@@ -8,7 +8,7 @@ public class TempoAula {
 	private final static long TEMPO_AULA_EM_MILIS = TEMPO_AULA_EM_MIN * 60 * 1000;
 
 	/**
-	 * Formatador usado para trasformar as strings passadas na construção do
+	 * Formatador usado para trasformar as strings passadas na construï¿½ï¿½o do
 	 * objeto em objeto da classe {@link Date} .
 	 */
 	private static DateFormat formatador = new SimpleDateFormat("HH:mm");
@@ -21,35 +21,34 @@ public class TempoAula {
 			this.instanteInicio = (Date) formatador.parse(strInicio);
 			this.instanteTermino = (Date) formatador.parse(strFim);
 		} catch (ParseException e) {
-			throw new IllegalArgumentException("Argumentos inválidos: ("
+			throw new IllegalArgumentException("Argumentos invï¿½lidos: ("
 					+ strInicio + ", " + strFim + ")", e);
 		}
 		if (instanteInicio.after(instanteTermino)) {
 			throw new IllegalArgumentException(
-					"Início deve ser anterior ao fim.");
+					"Inï¿½cio deve ser anterior ao fim.");
 		}
 
 		Long a = instanteInicio.getTime();
 		Long b = instanteTermino.getTime();
 		if (TEMPO_AULA_EM_MILIS != b - a) {
 			throw new IllegalArgumentException(
-					"Duração de um tempo de aula é de " + TEMPO_AULA_EM_MIN
+					"Duraï¿½ï¿½o de um tempo de aula ï¿½ de " + TEMPO_AULA_EM_MIN
 							+ " minutos.");
 		}
 	}
 
 	public boolean haColisao(TempoAula outro) {
-		//TO-DO
+		// TO-DO
 		return true;
 	}
 
 	public String getInstanteInicio() {
-		return instanteInicio;
+		return formatador.format(instanteInicio);
 	}
-	
 
 	public String getInstanteTermino() {
-		return instanteInicio;
+		return formatador.format(instanteTermino);
 	}
 
 	@Override
@@ -84,7 +83,4 @@ public class TempoAula {
 			return false;
 		return true;
 	}
-	
-	
-	
 }
