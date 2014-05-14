@@ -10,6 +10,8 @@
 	<bean id="FornecerGradeServiceBean" class="br.cefetrj.sca.service.FornecerGradeService" />
 	<bean id="ProfessorRepoBean" class="br.cefetrj.sca.dominio.ProfessorRepo" />
 	<bean id="ProfessorDaoBean" class="br.cefetrj.sca.infra.ProfessorDaoJpa" />
+	<bean id="AlunoRepoBean" class="br.cefetrj.sca.dominio.AlunoRepo" />
+	<bean id="alunoDaoBean" class="br.cefetrj.sca.infra.AlunoDaoJpa" />
 
 </beans>
 
