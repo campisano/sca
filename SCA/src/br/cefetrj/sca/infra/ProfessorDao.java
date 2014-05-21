@@ -1,5 +1,7 @@
 package br.cefetrj.sca.infra;
 
+import java.util.List;
+
 import br.cefetrj.sca.dominio.Professor;
 
 public interface ProfessorDao {
@@ -11,5 +13,7 @@ public interface ProfessorDao {
 	public abstract void excluir(Professor p);
 
 	public abstract Professor getProfessorPorMatricula(String matricula);
+
+	public abstract List<Professor> obterTodos();
 
 }

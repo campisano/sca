@@ -1,5 +1,7 @@
 package br.cefetrj.sca.infra;
 
+import java.util.List;
+
 import br.cefetrj.sca.dominio.Aluno;
 
 public class AlunoDaoJpa extends GenericDaoJpa<Aluno> implements AlunoDao {
@@ -14,6 +16,11 @@ public class AlunoDaoJpa extends GenericDaoJpa<Aluno> implements AlunoDao {
 	@Override
 	public boolean excluir(Aluno p) {
 		return super.excluir(Aluno.class, p.getId());
+	}
+
+	@Override
+	public List<Aluno> obterTodos() {
+		return super.obterTodos(Aluno.class);
 	}
 
 }

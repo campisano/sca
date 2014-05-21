@@ -1,37 +1,83 @@
 package br.cefetrj.sca.dominio;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import br.cefetrj.sca.dominio.contas.Email;
 
+@Entity
 public class Aluno {
+
+	private static final int TAM_MATRICULA = 10;
+
 	@Id
 	@GeneratedValue
 	Long id;
-	
-	/**
-	 * Nome completo do aluno.
-	 */
-	String nome;
 
 	/**
-	 * Matr�cula do aluno, composta de 7 d�gitos.
+	 * Nome do aluno.
 	 */
-	String matricula;
+	private String nome;
 
-	public Aluno(String matricula, String nome) {
-		// TODO Auto-generated constructor stub
+	/**
+	 * Matrícula do aluno, composta de <code>TAM_MATRICULA</code> carateres.
+	 */
+	private String matricula;
+
+	@Embedded
+	private Email email;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataNascimento;
+
+	public Long getId() {
+		return id;
+	}
+
+	private Aluno() {
+	}
+
+	public Aluno(String nome, String matricula, Date dataNascimento,
+			String enderecoEmail) {
+		super();
+		if (nome == null || nome.equals("")) {
+			throw new IllegalArgumentException("Nome não pode ser vazio.");
+		}
+		if (matricula == null || matricula.equals("")) {
+			throw new IllegalArgumentException("Matrícula não pode ser vazia.");
+		}
+		if (matricula.length() != TAM_MATRICULA) {
+			throw new IllegalArgumentException("Matrícula deve ter "
+					+ TAM_MATRICULA + " caracteres.");
+		}
+		this.nome = nome;
+		this.matricula = matricula;
+		this.dataNascimento = dataNascimento;
+		this.email = new Email(enderecoEmail);
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
 
-	public Long getId() {
-		return id;
+	public String getEmail() {
+		return email.getEndereco();
 	}
+
 }

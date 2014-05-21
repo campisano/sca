@@ -3,14 +3,18 @@ package br.cefetrj.sca.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.cefetrj.sca.dominio.Professor;
-import br.cefetrj.sca.dominio.ProfessorRepo;
+import br.cefetrj.sca.dominio.ProfessorRepositorio;
 
 public class FornecerGradeService {
 
 	@Autowired
-	private ProfessorRepo professorRepo;
+	private ProfessorRepositorio professorRepositorio;
 
 	public Professor validarProfessor(String matriculaProfessor) {
-		return professorRepo.obterProfessor(matriculaProfessor);
+		return professorRepositorio.obterProfessor(matriculaProfessor);
+	}
+
+	public void incluirProfessor(String matricula, String nome) {
+		professorRepositorio.adicionar(matricula, nome);
 	}
 }

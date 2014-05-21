@@ -1,5 +1,7 @@
 package br.cefetrj.sca.infra;
 
+import java.util.List;
+
 import br.cefetrj.sca.dominio.Professor;
 
 public class ProfessorDaoJpa extends GenericDaoJpa<Professor> implements
@@ -16,5 +18,10 @@ public class ProfessorDaoJpa extends GenericDaoJpa<Professor> implements
 		String consulta = "SELECT a from Professor a WHERE a.matricula = ?";
 		Object array[] = { matricula };
 		return super.obterEntidade(consulta, array);
+	}
+
+	@Override
+	public List<Professor> obterTodos() {
+		return super.obterTodos(Professor.class);
 	}
 }
