@@ -3,33 +3,38 @@ package br.cefetrj.sca.dominio.avaliacao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
+@Entity
 public class Quesito {
-
 	@Id
 	@GeneratedValue
-	private Long id;
+	Long id;
 
-	private String questao;
-
-	@OneToMany
-	// por padrão cria uma inítil tabela de associação, @JoinColumn resolve isso
-	@JoinColumn(name = "QUESITO_ID", referencedColumnName = "ID")
-	private List<Resposta> alternativas;
-
-	private Quesito() {
-		alternativas = new ArrayList<Resposta>();
+	public Long getId() {
+		return id;
 	}
 
-	public String getQuestao() {
-		return questao;
+	String enunciado;
+
+	@ManyToMany
+	@JoinTable(name = "QUESITO_ALTERNATIVA", joinColumns = { @JoinColumn(name = "QUESITO_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "ALTERNATIVA_ID", referencedColumnName = "ID") })
+	List<Alternativa> alternativas = new ArrayList<Alternativa>();
+
+	public Quesito(String enunciado) {
+		this.enunciado = enunciado;
 	}
 
-	public void adicionarAlternativa(String descritor) {
-		this.alternativas.add(new Resposta(descritor));
+	public void adicionarAlternativa(Alternativa alternativa) {
+		this.alternativas.add(alternativa);
+	}
+
+	public String getEnunciado() {
+		return enunciado;
 	}
 }

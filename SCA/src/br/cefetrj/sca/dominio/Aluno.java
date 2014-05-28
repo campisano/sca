@@ -45,8 +45,7 @@ public class Aluno {
 	private Aluno() {
 	}
 
-	public Aluno(String nome, String matricula, Date dataNascimento,
-			String enderecoEmail) {
+	public Aluno(String nome, String matricula) {
 		super();
 		if (nome == null || nome.equals("")) {
 			throw new IllegalArgumentException("Nome não pode ser vazio.");
@@ -60,6 +59,11 @@ public class Aluno {
 		}
 		this.nome = nome;
 		this.matricula = matricula;
+	}
+
+	public Aluno(String nome, String matricula, Date dataNascimento,
+			String enderecoEmail) {
+		this(nome, matricula);
 		this.dataNascimento = dataNascimento;
 		this.email = new Email(enderecoEmail);
 	}

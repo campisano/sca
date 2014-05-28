@@ -10,38 +10,69 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 public class Turma {
+	/**
+	 * Quantidade de caracteres necessários no código de uma turma.
+	 */
 	private static final int TAM_MAX_CODIGO = 7;
+
+	private static final int CAPACIDADE_PRESUMIDA = 40;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
+	/**
+	 * O código da turma. Deve necessariamente possuir sete caracteres (e.g.,
+	 * 6100009)
+	 */
 	private String codigo;
 
-	private int capacidadeMaxima;
+	/**
+	 * Capacidade máxima da turma. Se não for definido pelo construtor, seu
+	 * valor presumido é <code>CAPACIDADE_PRESUMIDA</code>.
+	 */
+	private int capacidadeMaxima = CAPACIDADE_PRESUMIDA;
 
+	/**
+	 * Disciplina para a qual esta turma foi aberta.
+	 */
 	@ManyToOne
 	Disciplina disciplina;
 
+	/**
+	 * Professor responsável por esta turma.
+	 */
+	@ManyToOne
 	Professor professor;
 
+	/**
+	 * Informações sobre locais e horários de aulas dessa turma.
+	 */
 	private List<Aula> aulas;
 
+	/**
+	 * Inscrições realizadas nesta turma.
+	 */
 	private Set<Inscricao> inscricoes;
 
+	/**
+	 * Semestre letivo em que esta turma é ofertada.
+	 */
 	@Embedded
 	SemestreLetivo semestreLetivo;
 
 	/**
-	 * RN02: Uma turma não pode ter mais alunos inscritos do que a capacidade
-	 * máxima definida para ela.
-	 * 
-	 * O c�digo da turma possui sete caracteres (e.g., 6100009)
+	 * Cria uma turma com disciplina e código fornecidos como parâmetros. A
+	 * capacidade máxima da turma criada é igual a
+	 * <code>CAPACIDADE_PRESUMIDA</code>. O semestre letvo da turma criada é
+	 * <code>SemestreLetivo.SEMESTRE_LETIVO_CORRENTE</code>.
 	 * 
 	 */
-	public Turma(String codigo, Integer numeroVagas, SemestreLetivo periodo,
-			Disciplina disciplina) {
+	public Turma(Disciplina disciplina, String codigo) {
 
+		if (disciplina == null) {
+			throw new IllegalArgumentException("Disciplina não fornecida!");
+		}
 		this.disciplina = disciplina;
 
 		if (codigo == null || codigo.isEmpty()) {
@@ -53,8 +84,21 @@ public class Turma {
 		}
 		this.codigo = codigo;
 
+		this.semestreLetivo = SemestreLetivo.SEMESTRE_LETIVO_CORRENTE;
+		this.capacidadeMaxima = CAPACIDADE_PRESUMIDA;
+	}
+
+	/**
+	 * Cria uma turma com disciplina, código, número de vagas e semestre letivo
+	 * fornecidos como parâmetros. A capacidade máxima da turma criada é igual a
+	 */
+	public Turma(Disciplina disciplina, String codigo, Integer numeroVagas,
+			SemestreLetivo periodo) {
+
+		this(disciplina, codigo);
+
 		if (numeroVagas == null) {
-			throw new IllegalArgumentException("Número de vagas é obrigatório.");
+			throw new IllegalArgumentException("Número de vagas indefinido!");
 		}
 		if (numeroVagas <= 0) {
 			throw new IllegalArgumentException(
@@ -114,11 +158,16 @@ public class Turma {
 		return null;
 	}
 
-	public boolean inscreverAluno(Aluno aluno) {
+	/**
+	 * Inscreve o aluno passado como parâmetro nesta turma.
+	 * 
+	 * RN02: Uma turma não pode ter mais alunos inscritos do que a capacidade
+	 * máxima definida para ela.
+	 */
+	public void inscreverAluno(Aluno aluno) {
 		if (inscricoes.size() + 1 > capacidadeMaxima) {
 			throw new IllegalStateException("Limite de vagas já alcançado.");
-		}
-		if (inscricoes.size() < capacidadeMaxima) {
+		} else {
 			Inscricao inscricao = new Inscricao(aluno);
 			for (Inscricao umaInscricao : inscricoes) {
 				if (umaInscricao.getAluno().getMatricula()
@@ -128,11 +177,20 @@ public class Turma {
 				}
 			}
 			inscricoes.add(inscricao);
-			return true;
 		}
-		return false;
 	}
 
+	/**
+	 * Altera a capacidade máxima de inscrições para esta turma.
+	 * 
+	 * @param capacidadeMaxima
+	 *            nova capacidade máxima de inscrições.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             se <code>capacidadeMaxima</code> é nulo ou se não é um número
+	 *             positivo, ou se for um valor menor do que a quantidade atual
+	 *             de inscrições.
+	 */
 	public void setCapacidadeMaxima(Integer capacidadeMaxima) {
 		if (capacidadeMaxima == null) {
 			throw new IllegalArgumentException("Número de vagas é obrigatório.");
@@ -146,16 +204,6 @@ public class Turma {
 					"Há mais inscritos do que a capacidade máxima fornecida.");
 		}
 		this.capacidadeMaxima = capacidadeMaxima;
-	}
-
-	public void inscrever(Aluno aluno) {
-		if (this.inscricoes.size() <= capacidadeMaxima) {
-			Inscricao e = new Inscricao(aluno);
-			this.inscricoes.add(e);
-		} else {
-			throw new IllegalStateException(
-					"Não há vagas para uma nova inscrição.");
-		}
 	}
 
 	/**
