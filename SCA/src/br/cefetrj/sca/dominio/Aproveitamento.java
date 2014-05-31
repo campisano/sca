@@ -2,9 +2,16 @@ package br.cefetrj.sca.dominio;
 
 import java.math.BigDecimal;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Aproveitamento {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private BigDecimal notaP1;
 	private BigDecimal notaP2;
 	private BigDecimal notaP3;

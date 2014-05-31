@@ -5,14 +5,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Embeddable;
+
 /**
  * Esta classe fornece funcionalidade para representar intervalos de tempo.
  * 
  * @author <a href="mailto:edubezerra@gmail.com">Eduardo Bezerra</a>
  */
+@Embeddable
 public class Intervalo implements Cloneable {
 	/**
-	 * Formatador usado para trasformar as strings passadas na construção do
+	 * Formatador usado para trasformar as strings passadas na construï¿½ï¿½o do
 	 * objeto em objeto da classe {@link Date} .
 	 */
 	private static DateFormat formatador = new SimpleDateFormat("hh:mm");
@@ -26,37 +29,37 @@ public class Intervalo implements Cloneable {
 	/**
 	 * 
 	 * @param strInicio
-	 *            início do intervalo, no formato hh:mm (e.g., "10:30")
+	 *            inï¿½cio do intervalo, no formato hh:mm (e.g., "10:30")
 	 * @param strFim
 	 *            fim do intervalo, no formato H:mm (e.g., "12:00")
-	 * @throws ParseException se a o formato de início ou fim não é hh:mm.
-	 * @throws IllegalArgumentException se o início não for anterior ao fim.
+	 * @throws ParseException se a o formato de inï¿½cio ou fim nï¿½o ï¿½ hh:mm.
+	 * @throws IllegalArgumentException se o inï¿½cio nï¿½o for anterior ao fim.
 	 */
 	public Intervalo(final String strInicio, final String strFim) {
 		try {
 			this.inicio = (Date) formatador.parse(strInicio);
 			this.fim = (Date) formatador.parse(strFim);
 		} catch (ParseException e) {
-			throw new IllegalArgumentException("Argumentos inválidos: ("
+			throw new IllegalArgumentException("Argumentos invï¿½lidos: ("
 					+ strInicio + ", " + strFim + ")", e);
 		}
 		if (inicio.after(fim)) {
 			throw new IllegalArgumentException(
-					"Início deve ser anterior ao fim.");
+					"Inï¿½cio deve ser anterior ao fim.");
 		}
 	}
 
 	/**
 	 * 
 	 * @param dtInicio
-	 *            início do intervalo, no formato hh:mm (e.g., "10:30")
+	 *            inï¿½cio do intervalo, no formato hh:mm (e.g., "10:30")
 	 * @param dtFim
 	 *            fim do intervalo, no formato H:mm (e.g., "12:00")
 	 */
 	private Intervalo(final Date dtInicio, final Date dtFim) {
 		if (dtInicio.after(dtFim)) {
 			throw new IllegalArgumentException(
-					"Início deve ser anterior ao fim.");
+					"Inï¿½cio deve ser anterior ao fim.");
 		}
 		this.inicio = dtInicio;
 		this.fim = dtFim;
@@ -78,19 +81,19 @@ public class Intervalo implements Cloneable {
 	}
 
 	/** 
-	 * Retorna o início do intervalo.
-	 * @return o início do intervalo, no formato hh:mm 
+	 * Retorna o inï¿½cio do intervalo.
+	 * @return o inï¿½cio do intervalo, no formato hh:mm 
 	 */
 	public String getInicio() {
 		return formatador.format(this.inicio);
 	}
 
 	/**
-	 * Verifica se há colisão entre dois intervalos.
+	 * Verifica se hï¿½ colisï¿½o entre dois intervalos.
 	 * 
 	 * @param outroIntervalo
-	 *            o intervalo com o qual a comparação é feita.
-	 * @return true se há colisão entre os intervalos; false em caso contrário.
+	 *            o intervalo com o qual a comparaï¿½ï¿½o ï¿½ feita.
+	 * @return true se hï¿½ colisï¿½o entre os intervalos; false em caso contrï¿½rio.
 	 */
 	public Boolean colide(final Intervalo outroIntervalo) {
 		return !outroIntervalo.inicio.before(this.inicio)
@@ -110,12 +113,12 @@ public class Intervalo implements Cloneable {
 	}
 
 	/**
-	 * Verifica se há colisão dois intervalos são iguais. Dois intervalos são
-	 * iguais se eles possuem os mesmos início e fim.
+	 * Verifica se hï¿½ colisï¿½o dois intervalos sï¿½o iguais. Dois intervalos sï¿½o
+	 * iguais se eles possuem os mesmos inï¿½cio e fim.
 	 * 
 	 * @param outroIntervalo
-	 *            o intervalo com o qual a comparação é feita.
-	 * @return true se há colisão entre os intervalos; false em caso contrário.
+	 *            o intervalo com o qual a comparaï¿½ï¿½o ï¿½ feita.
+	 * @return true se hï¿½ colisï¿½o entre os intervalos; false em caso contrï¿½rio.
 	 */
 	@Override
 	public boolean equals(Object outroIntervalo) {

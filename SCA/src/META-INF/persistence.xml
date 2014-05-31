@@ -10,6 +10,7 @@
 		<class>br.cefetrj.sca.dominio.GradeDisponibilidade</class>
 		<class>br.cefetrj.sca.dominio.Disciplina</class>
 		<class>br.cefetrj.sca.dominio.Turma</class>
+		<class>br.cefetrj.sca.dominio.Aula</class>
 		<class>br.cefetrj.sca.dominio.Departamento</class>
 		<class>br.cefetrj.sca.dominio.Aproveitamento</class>
 		<class>br.cefetrj.sca.dominio.Inscricao</class>
@@ -20,11 +21,12 @@
 		<class>br.cefetrj.sca.dominio.avaliacao.Quesito</class>
 		<class>br.cefetrj.sca.dominio.avaliacao.Alternativa</class>
 		<class>br.cefetrj.sca.dominio.avaliacao.AvaliacaoTurma</class>
+		<class>br.cefetrj.sca.dominio.Aproveitamento</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 
-			<property name="hibernate.connection.url" value="jdbc:postgresql://192.168.10.242/grad-padsoft-sca-prof" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://192.168.10.242/grad-padsoft-sca-riccardo.campisano" />
 
 			<property name="hibernate.connection.username" value="padsoft" />
 			<property name="hibernate.connection.password" value="padsoft" />

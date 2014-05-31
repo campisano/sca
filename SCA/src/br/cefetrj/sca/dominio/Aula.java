@@ -1,8 +1,28 @@
 package br.cefetrj.sca.dominio;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Aula {
+	@Id
+	@GeneratedValue
+	Long id;
+
+	@Enumerated(EnumType.ORDINAL)
 	private EnumDiaSemana dia;
+
+	@Embedded // TODO
 	private Intervalo intervalo;
+
+	@SuppressWarnings("unused")
+	private Aula() {
+
+	}
 
 	public Aula(EnumDiaSemana dia, String strInicio, String strFim) {
 		super();

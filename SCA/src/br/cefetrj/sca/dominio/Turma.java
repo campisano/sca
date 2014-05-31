@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+@Entity
 public class Turma {
 	/**
 	 * Quantidade de caracteres necessários no código de uma turma.
@@ -48,11 +53,14 @@ public class Turma {
 	/**
 	 * Informações sobre locais e horários de aulas dessa turma.
 	 */
+	@OneToMany
+	@JoinColumn(name = "TURMA_ID", referencedColumnName = "ID")
 	private List<Aula> aulas;
 
 	/**
 	 * Inscrições realizadas nesta turma.
 	 */
+	@Transient
 	private Set<Inscricao> inscricoes;
 
 	/**
@@ -78,10 +86,10 @@ public class Turma {
 		if (codigo == null || codigo.isEmpty()) {
 			throw new IllegalArgumentException("Código da turma é obrigatório.");
 		}
-		if (codigo.length() != TAM_MAX_CODIGO) {
-			throw new IllegalArgumentException("Código da turma deve ter "
-					+ TAM_MAX_CODIGO + " caracteres necessariamente.");
-		}
+		// if (codigo.length() != TAM_MAX_CODIGO) {
+		// throw new IllegalArgumentException("Código da turma deve ter "
+		// + TAM_MAX_CODIGO + " caracteres necessariamente.");
+		// }
 		this.codigo = codigo;
 
 		this.semestreLetivo = SemestreLetivo.SEMESTRE_LETIVO_CORRENTE;

@@ -2,19 +2,34 @@ package br.cefetrj.sca.dominio;
 
 import java.math.BigDecimal;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
 /**
- * Representa a inscrição de um aluno em um turma em um determinado semestre letivo.
+ * Representa a inscrição de um aluno em um turma em um determinado semestre
+ * letivo.
  * 
  * @author Eduardo
- *
+ * 
  */
 public class Inscricao {
-	Aluno aluno;
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@OneToOne
+	private Aluno aluno;
+
+	@ManyToOne
 	private Aproveitamento avaliacao = null;
 
 	/**
 	 * Dependência injetada automaticamente.
 	 */
+	@Transient
 	private EstrategiaAvaliacaoAluno estrategiaAvaliacao;
 
 	public Inscricao(Aluno aluno) {
