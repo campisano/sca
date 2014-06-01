@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.cefetrj.sca.dominio.Disciplina;
 import br.cefetrj.sca.dominio.Professor;
 import br.cefetrj.sca.dominio.ProfessorRepositorio;
 
 public class RegistrarHabilitacoeService {
 
-	ProfessorRepositorio repo = new ProfessorRepositorio();
+	@Autowired
+	private ProfessorRepositorio repo;
+
 	private Professor professor;
 
 	List<Professor> obterProfessores() {

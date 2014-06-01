@@ -8,10 +8,11 @@ import javax.persistence.Id;
 public class Alternativa {
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	private String descritor;
 
+	@SuppressWarnings("unused")
 	private Alternativa() {
 	}
 

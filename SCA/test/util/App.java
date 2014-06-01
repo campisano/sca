@@ -1,4 +1,5 @@
 package util;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,7 +13,7 @@ public class App {
 
 		FornecerGradeService serv = (FornecerGradeService) context
 				.getBean("FornecerGradeServiceBean");
-		
+
 		Professor professor = serv.validarProfessor("1506449");
 		System.out.println(professor.getNome());
 

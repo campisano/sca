@@ -1,4 +1,5 @@
 package util;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -70,7 +71,7 @@ public class CarregarInformacoesQuestionarioAvaliacao {
 
 		Quesito[] questoes = new Quesito[] { quest1, quest2, quest3, quest4,
 				quest5, quest6, quest7, quest8 };
-		
+
 		for (Quesito quesito : questoes) {
 			em.getTransaction().begin();
 			em.persist(quesito);

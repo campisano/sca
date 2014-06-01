@@ -1,4 +1,5 @@
 package util;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,8 +28,8 @@ public class CarregarInformacoesMatricula {
 	private static void carregarTurmas() {
 		HashMap<String, SemestreLetivo> turmas = new HashMap<String, SemestreLetivo>();
 
-		HashMap<String, String> disciplinas = new HashMap<String, String> ();
-		
+		HashMap<String, String> disciplinas = new HashMap<String, String>();
+
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("SCAPU");
 
@@ -70,14 +71,14 @@ public class CarregarInformacoesMatricula {
 			Set<String> keySet = turmas.keySet();
 			for (String codigoTurma : keySet) {
 				SemestreLetivo sl = turmas.get(codigoTurma);
-				
+
 				String codigoDisciplina = disciplinas.get(codigoTurma);
-				
+
 				String hql = "from Disciplina d where d.codigo = :cod";
 				Query q = em.createQuery(hql);
 				q.setParameter("cod", codigoDisciplina);
 				Disciplina d = (Disciplina) q.getSingleResult();
-				
+
 				Turma t = new Turma(d, codigoTurma, 40, sl);
 				em.getTransaction().begin();
 				em.persist(t);

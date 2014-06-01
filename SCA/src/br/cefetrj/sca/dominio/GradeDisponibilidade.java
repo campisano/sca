@@ -21,18 +21,18 @@ public class GradeDisponibilidade implements Cloneable {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@ManyToOne
-	Professor professor;
+	private Professor professor;
 
 	@ManyToMany
 	@JoinTable(name = "GRADEDISPONIBILIDADE_DISCIPLINA", joinColumns = { @JoinColumn(name = "GRADE_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "ID") })
-	Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+	private Set<Disciplina> disciplinas = new HashSet<Disciplina>();
 
 	@OneToMany
 	@JoinColumn(name = "GRADEDISPONIBILIDADE_ID", referencedColumnName = "ID")
-	Set<ItemHorario> horarios = new HashSet<ItemHorario>();
+	private Set<ItemHorario> horarios = new HashSet<ItemHorario>();
 
 	@Transient
 	private DisciplinaRepositorio r;
@@ -44,6 +44,7 @@ public class GradeDisponibilidade implements Cloneable {
 	@Autowired
 	private ItensHorario itensHorario;
 
+	@SuppressWarnings("unused")
 	private GradeDisponibilidade() {
 	}
 

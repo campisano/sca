@@ -45,6 +45,7 @@ public class SemestreLetivo {
 		return periodo;
 	}
 
+	@SuppressWarnings("unused")
 	private SemestreLetivo() {
 	}
 

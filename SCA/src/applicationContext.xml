@@ -8,9 +8,19 @@
 	<context:annotation-config />
 
 	<bean id="FornecerGradeServiceBean" class="br.cefetrj.sca.service.FornecerGradeService" />
+	<bean id="RegistrarHabilitacoeServiceBean" class="br.cefetrj.sca.service.RegistrarHabilitacoeService" />
+	<bean id="TurmasCursadasServiceBean" class="br.cefetrj.sca.service.TurmasCursadasService" />
+
+	<bean id="AlunoRepositorioBean" class="br.cefetrj.sca.dominio.AlunoRepositorio" />
+	<bean id="DisciplinaRepositorioBean" class="br.cefetrj.sca.dominio.DisciplinaRepositorio" />
 	<bean id="ProfessorRepositorioBean" class="br.cefetrj.sca.dominio.ProfessorRepositorio" />
-	<bean id="ProfessorDaoBean" class="br.cefetrj.sca.infra.ProfessorDaoJpa" />
+	<bean id="TurmaRepositorioBean" class="br.cefetrj.sca.dominio.TurmaRepositorio" />
+
 	<bean id="AlunoDaoBean" class="br.cefetrj.sca.infra.AlunoDaoJpa" />
+	<bean id="DisciplinaDaoBean" class="br.cefetrj.sca.infra.DisciplinaDaoJpa" />
+	<bean id="ProfessorDaoBean" class="br.cefetrj.sca.infra.ProfessorDaoJpa" />
+	<bean id="TurmaDaoBean" class="br.cefetrj.sca.infra.TurmaDaoJpa" />
+
 	<bean id="EstrategiaAvaliacaoAlunoBean" class="br.cefetrj.sca.dominio.EstrategiaAvaliacaoAlunoImpl2009" />
 
 </beans>

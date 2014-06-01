@@ -27,27 +27,28 @@ import br.cefetrj.sca.dominio.Turma;
 public class AvaliacaoTurma {
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	/**
 	 * Alternativas selecionadas pelo aluno para cada um dos quesitos de
 	 * avaliação.
 	 */
 	@ManyToMany
-	List<Alternativa> alternativas = new ArrayList<Alternativa>();
+	private List<Alternativa> alternativas = new ArrayList<Alternativa>();
 
 	/**
 	 * A turma avaliada.
 	 */
 	@ManyToOne
-	Turma turmaAvaliada;
+	private Turma turmaAvaliada;
 
 	/**
 	 * A aluno avaliador.
 	 */
 	@ManyToOne
-	Aluno alunoAvaliador;
+	private Aluno alunoAvaliador;
 
+	@SuppressWarnings("unused")
 	private AvaliacaoTurma() {
 	}
 

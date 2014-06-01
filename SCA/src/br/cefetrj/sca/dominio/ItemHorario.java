@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class ItemHorario {
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@Embedded
 	private Intervalo tempoAula;
@@ -19,6 +19,7 @@ public class ItemHorario {
 	@Enumerated(EnumType.ORDINAL)
 	EnumDiaSemana dia;
 
+	@SuppressWarnings("unused")
 	private ItemHorario() {
 	}
 
@@ -42,6 +43,5 @@ public class ItemHorario {
 	public boolean colide(ItemHorario item) {
 		return this.tempoAula.colide(item.tempoAula);
 	}
-	
-	
+
 }

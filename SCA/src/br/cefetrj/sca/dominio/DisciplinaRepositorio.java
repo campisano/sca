@@ -3,10 +3,16 @@ package br.cefetrj.sca.dominio;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.cefetrj.sca.infra.DisciplinaDao;
 
 public class DisciplinaRepositorio {
+	@Autowired
 	private DisciplinaDao dao;
+
+	private DisciplinaRepositorio() {
+	}
 
 	public void adicionar(Disciplina d) {
 		dao.gravar(d);

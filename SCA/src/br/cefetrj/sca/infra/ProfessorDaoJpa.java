@@ -10,7 +10,7 @@ public class ProfessorDaoJpa extends GenericDaoJpa<Professor> implements
 	@Override
 	public void excluir(Professor p) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

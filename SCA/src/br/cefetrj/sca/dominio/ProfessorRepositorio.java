@@ -9,7 +9,10 @@ import br.cefetrj.sca.infra.ProfessorDao;
 public class ProfessorRepositorio {
 
 	@Autowired
-	ProfessorDao dao;
+	private ProfessorDao dao;
+
+	private ProfessorRepositorio() {
+	}
 
 	public Professor obterProfessor(String matricula) {
 		return dao.getProfessorPorMatricula(matricula);

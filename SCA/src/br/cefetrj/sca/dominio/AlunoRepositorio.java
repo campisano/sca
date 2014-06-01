@@ -9,10 +9,9 @@ import br.cefetrj.sca.infra.AlunoDao;
 public class AlunoRepositorio {
 
 	@Autowired
-	AlunoDao dao;
+	private AlunoDao dao;
 
 	private AlunoRepositorio() {
-		super();
 	}
 
 	public void atualizar(Aluno aluno) {

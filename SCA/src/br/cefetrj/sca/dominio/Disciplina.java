@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 public class Disciplina {
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	private String nome;
 	private String codigo;
@@ -22,9 +22,10 @@ public class Disciplina {
 
 	@ManyToMany
 	@JoinTable(name = "DISCIPLINA_PREREQS", joinColumns = { @JoinColumn(name = "GRADE_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "ID") })
-	Set<Disciplina> preReqs = new HashSet<Disciplina>();
-	
-	public Disciplina() {
+	private Set<Disciplina> preReqs = new HashSet<Disciplina>();
+
+	@SuppressWarnings("unused")
+	private Disciplina() {
 	}
 
 	public Disciplina(String nome, String codigo, Integer quantidadeCreditos) {
@@ -57,7 +58,7 @@ public class Disciplina {
 	public Set<Disciplina> getPreRequisitos() {
 		return preReqs;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

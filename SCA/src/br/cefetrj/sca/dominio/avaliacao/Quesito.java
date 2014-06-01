@@ -21,17 +21,22 @@ import javax.persistence.ManyToMany;
 public class Quesito {
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	public Long getId() {
 		return id;
 	}
 
-	String enunciado;
+	private String enunciado;
 
 	@ManyToMany
 	@JoinTable(name = "QUESITO_ALTERNATIVA", joinColumns = { @JoinColumn(name = "QUESITO_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "ALTERNATIVA_ID", referencedColumnName = "ID") })
-	List<Alternativa> alternativas = new ArrayList<Alternativa>();
+	private List<Alternativa> alternativas = new ArrayList<Alternativa>();
+
+	@SuppressWarnings("unused")
+	private Quesito() {
+
+	}
 
 	public Quesito(String enunciado) {
 		this.enunciado = enunciado;

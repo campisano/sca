@@ -51,6 +51,11 @@ public class Professor {
 		return id;
 	}
 
+	@SuppressWarnings("unused")
+	private Professor() {
+
+	}
+
 	public Professor(String matricula, String nome, String email) {
 		this(matricula, nome);
 		this.email = new Email(email);

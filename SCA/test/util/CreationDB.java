@@ -17,6 +17,7 @@ import br.cefetrj.sca.dominio.Turma;
 import br.cefetrj.sca.dominio.avaliacao.Alternativa;
 import br.cefetrj.sca.dominio.avaliacao.Quesito;
 
+@SuppressWarnings("all")
 public class CreationDB {
 
 	public static void main(String[] args) {

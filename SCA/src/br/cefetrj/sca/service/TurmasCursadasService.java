@@ -1,4 +1,4 @@
-package br.cefetrj.sca.dominio;
+package br.cefetrj.sca.service;
 
 import java.util.HashSet;
 import java.util.List;
@@ -6,15 +6,26 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.cefetrj.sca.dominio.Aluno;
+import br.cefetrj.sca.dominio.AlunoRepositorio;
+import br.cefetrj.sca.dominio.Disciplina;
+import br.cefetrj.sca.dominio.DisciplinaRepositorio;
+import br.cefetrj.sca.dominio.EnumSituacaoFinalAvaliacao;
+import br.cefetrj.sca.dominio.Inscricao;
+import br.cefetrj.sca.dominio.SemestreLetivo;
+import br.cefetrj.sca.dominio.Turma;
+import br.cefetrj.sca.dominio.TurmaRepositorio;
+
 public class TurmasCursadasService {
-	@Autowired
-	AlunoRepositorio ra;
 
 	@Autowired
-	TurmaRepositorio rt;
+	private AlunoRepositorio ra;
 
 	@Autowired
-	DisciplinaRepositorio dr;
+	private TurmaRepositorio rt;
+
+	@Autowired
+	private DisciplinaRepositorio dr;
 
 	/**
 	 * @return coleção de turmas cujas disciplinas da grade curricular estão
@@ -60,7 +71,8 @@ public class TurmasCursadasService {
 	 * Dada a matrícula de um aluno, retorna a lista de turmas que o aluno já
 	 * cursou com aprovação.
 	 * 
-	 * @param matriculaAluno matrícula do aluno.
+	 * @param matriculaAluno
+	 *            matrícula do aluno.
 	 * 
 	 * @return lista de turmas que o aluno de matrícula
 	 *         <code>matriculaAluno</code> cursou com aprovação.
@@ -73,7 +85,8 @@ public class TurmasCursadasService {
 			for (Inscricao inscricao : inscricoes) {
 				if (aluno.getMatricula().equals(
 						inscricao.getAluno().getMatricula())) {
-					EnumSituacaoFinalAvaliacao avaliacao = inscricao.getAvaliacao();
+					EnumSituacaoFinalAvaliacao avaliacao = inscricao
+							.getAvaliacao();
 					if (avaliacao != EnumSituacaoFinalAvaliacao.AP) {
 						break;
 					}

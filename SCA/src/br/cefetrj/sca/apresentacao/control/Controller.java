@@ -29,10 +29,8 @@ public class Controller extends HttpServlet {
 		comandos = new Hashtable<String, AbstractCommand>();
 		comandos.put("ValidarMatriculaProfessor",
 				new ValidarMatriculaProfessorCommand());
-		comandos.put("ObterDisciplinas",
-				new ObterDisciplinasCommand());
-		comandos.put("AdicionarDisciplina",
-				new AdicionarDisciplinaCommand());
+		comandos.put("ObterDisciplinas", new ObterDisciplinasCommand());
+		comandos.put("AdicionarDisciplina", new AdicionarDisciplinaCommand());
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

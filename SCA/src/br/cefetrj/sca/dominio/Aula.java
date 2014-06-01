@@ -12,7 +12,7 @@ public class Aula {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@Enumerated(EnumType.ORDINAL)
 	private EnumDiaSemana dia;
@@ -20,6 +20,7 @@ public class Aula {
 	@Embedded
 	private Intervalo intervalo;
 
+	@SuppressWarnings("unused")
 	private Aula() {
 	}
 

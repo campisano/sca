@@ -10,21 +10,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
- * Representa a inscrição de um aluno em um turma em um determinado semestre letivo.
+ * Representa a inscrição de um aluno em um turma em um determinado semestre
+ * letivo.
  * 
  * @author Eduardo
- *
+ * 
  */
 @Entity
 public class Inscricao {
 
 	@Id
 	@GeneratedValue
-	Long id;
-	
+	private Long id;
+
 	@ManyToOne
 	private Aluno aluno;
-	
+
 	@OneToOne
 	private Aproveitamento avaliacao = null;
 
@@ -34,6 +35,7 @@ public class Inscricao {
 	@Transient
 	private EstrategiaAvaliacaoAluno estrategiaAvaliacao;
 
+	@SuppressWarnings("unused")
 	private Inscricao() {
 	}
 

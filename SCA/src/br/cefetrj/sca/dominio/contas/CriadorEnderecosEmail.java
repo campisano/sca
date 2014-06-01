@@ -34,19 +34,19 @@ public class CriadorEnderecosEmail {
 		String ultimoNome = partesNome[partesNome.length - 1].toLowerCase();
 		return new Email(primeiroNome + "." + ultimoNome + "@cefet-rj.br");
 	}
-	
+
 	public static void main(String[] args) {
 		CriadorEnderecosEmail criador = new CriadorEnderecosEmail();
 		Email email = criador.criar("Eduardo Bezerra da Silva");
 		email = criador.criar("João Ruan Soares Minto");
 		email = criador.criar("João Silva Minto");
 		System.out.println(email.getEndereco());
-		
+
 		List<String> lista = new ArrayList<String>();
 		String nome = "MARIA JOSÉ";
-		String nome2 = "MARIA ANA JOSÉ";
+		// String nome2 = "MARIA ANA JOSÉ";
 		lista.add(nome);
 		email = criador.criar(nome, lista); // retorna maria.jose.i
 	}
-	
+
 }

@@ -32,8 +32,10 @@ public class Intervalo implements Cloneable {
 	 *            in�cio do intervalo, no formato hh:mm (e.g., "10:30")
 	 * @param strFim
 	 *            fim do intervalo, no formato H:mm (e.g., "12:00")
-	 * @throws ParseException se a o formato de in�cio ou fim n�o � hh:mm.
-	 * @throws IllegalArgumentException se o in�cio n�o for anterior ao fim.
+	 * @throws ParseException
+	 *             se a o formato de in�cio ou fim n�o � hh:mm.
+	 * @throws IllegalArgumentException
+	 *             se o in�cio n�o for anterior ao fim.
 	 */
 	public Intervalo(final String strInicio, final String strFim) {
 		try {
@@ -67,22 +69,24 @@ public class Intervalo implements Cloneable {
 
 	@Override
 	public Object clone() {
-		Intervalo copia = new Intervalo((Date) inicio.clone(), (Date) fim
-				.clone());
+		Intervalo copia = new Intervalo((Date) inicio.clone(),
+				(Date) fim.clone());
 		return copia;
 	}
 
-	/** 
+	/**
 	 * Retorna o fim do intervalo.
-	 * @return o fim do intervalo, no formato hh:mm. 
+	 * 
+	 * @return o fim do intervalo, no formato hh:mm.
 	 */
 	public final String getFim() {
 		return formatador.format(this.fim);
 	}
 
-	/** 
+	/**
 	 * Retorna o in�cio do intervalo.
-	 * @return o in�cio do intervalo, no formato hh:mm 
+	 * 
+	 * @return o in�cio do intervalo, no formato hh:mm
 	 */
 	public String getInicio() {
 		return formatador.format(this.inicio);
@@ -100,7 +104,9 @@ public class Intervalo implements Cloneable {
 				&& !outroIntervalo.fim.after(this.fim);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override

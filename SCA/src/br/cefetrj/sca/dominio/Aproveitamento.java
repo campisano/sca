@@ -14,7 +14,7 @@ public class Aproveitamento {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	private BigDecimal notaP1;
 	private BigDecimal notaP2;
@@ -23,7 +23,7 @@ public class Aproveitamento {
 
 	@Transient
 	@Autowired
-	EstrategiaAvaliacaoAluno estrategia;
+	private EstrategiaAvaliacaoAluno estrategia;
 
 	private Aproveitamento() {
 	}

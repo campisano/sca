@@ -10,11 +10,11 @@ public class ItensHorario {
 		ItemHorario item = new ItemHorario(dia, fim, inicio);
 		itens.add(item);
 	}
-	
-	public ItemHorario getItem(EnumDiaSemana dia, String fim, String inicio){
+
+	public ItemHorario getItem(EnumDiaSemana dia, String fim, String inicio) {
 		ItemHorario item = new ItemHorario(dia, fim, inicio);
 		for (ItemHorario itemHorario : itens) {
-			if(itemHorario.equals(item)){
+			if (itemHorario.equals(item)) {
 				return itemHorario;
 			}
 		}

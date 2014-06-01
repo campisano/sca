@@ -16,7 +16,7 @@ public class ListaEspera {
 
 	@Id
 	@GeneratedValue
-	Long id;
+	private Long id;
 
 	@OneToOne
 	private Disciplina disciplina;
@@ -25,6 +25,7 @@ public class ListaEspera {
 	@JoinTable(name = "LISTAESPERA_ALUNO", joinColumns = { @JoinColumn(name = "LISTAESPERA_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "ALUNO_ID", referencedColumnName = "ID") })
 	private List<Aluno> alunos;
 
+	@SuppressWarnings("unused")
 	private ListaEspera() {
 	}
 
