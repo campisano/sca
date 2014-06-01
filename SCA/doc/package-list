@@ -1,1 +1,9 @@
+br.cefetrj.sca.apresentacao.cmds
+br.cefetrj.sca.apresentacao.control
 br.cefetrj.sca.dominio
+br.cefetrj.sca.dominio.avaliacao
+br.cefetrj.sca.dominio.contas
+br.cefetrj.sca.infra
+br.cefetrj.sca.service
+reader
+util
