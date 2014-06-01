@@ -57,24 +57,21 @@ public class CarregarInformacoes20141 {
 				Cell cell_code_t = sheet.getCell(11, i);
 				Cell cell_ano_t = sheet.getCell(15, i);
 				Cell cell_periodo_t = sheet.getCell(16, i);
-				
+
 				int ano = Integer.parseInt(cell_ano_t.getContents());
 				SemestreLetivo.EnumPeriodo periodo;
-				
-				if(cell_periodo_t.getContents().equals("1º Semestre"))
-				{
+
+				if (cell_periodo_t.getContents().equals("1º Semestre")) {
 					periodo = EnumPeriodo.PRIMEIRO;
-				}
-				else
-				{
+				} else {
 					periodo = EnumPeriodo.SEGUNDO;
 				}
-				
-				
+
 				SemestreLetivo sl = new SemestreLetivo(ano, periodo);
 				turmas.put(cell_code_t.getContents(), sl);
-				
-				turmasdisciplinas.put(cell_code_t.getContents(), cell_code_d.getContents());
+
+				turmasdisciplinas.put(cell_code_t.getContents(),
+						cell_code_d.getContents());
 			}
 		} catch (BiffException e) {
 			e.printStackTrace();
@@ -88,35 +85,7 @@ public class CarregarInformacoes20141 {
 				.createEntityManagerFactory(managerName);
 		EntityManager em = emf.createEntityManager();
 
-		Set<String> keySetD = disciplinas.keySet();Criar caso de uso para registrar avaliação do aluno para uma turma. a resposta é entre 4 possíveis tipos de resposta.
-
-deve se visualizar a lista de turmas / disciplinas
-
-o formulário terá várias questões, e um radio-box de resposta com os 4 tipos
-
-criar uma classe de serviço por cada caso de uso (1)
-
-
-usuário seleciona funcionalidade
-sistema apresenta lista de turma e disciplinas do periodo letivo que ele acabou de cursar
-
-
-
-- importar os objetos na base de dados
-cada linha do excel é um objeto partecipação
-ficar de olho na coluna situação, so aquelas aceitas
-
-- o que vai ser avaliado é a organização arquitetural
-fazer as operações de sistemas conforme explicado
-não misturar responsabilidade das camadas
-
-- relatório das alterações de 2/3 páginas
-descriver as 3/4 operações de sistema
-
-- entrega 06/06/2014 ou 09/06/2014
-comparecer entre 18:30 e 19
-somente após disso, subir o material no moodle (projeto e relatório).
-
+		Set<String> keySetD = disciplinas.keySet();
 
 		for (String codeD : keySetD) {
 			Disciplina d = new Disciplina(disciplinas.get(codeD), codeD, 4);
@@ -124,19 +93,18 @@ somente após disso, subir o material no moodle (projeto e relatório).
 			em.persist(d);
 			em.getTransaction().commit();
 		}
-		
+
 		Set<String> keySetT = turmas.keySet();
-		
-		for (String codeT : keySetT)
-		{
+
+		for (String codeT : keySetT) {
 			SemestreLetivo sl = turmas.get(codeT);
 			String codD = turmasdisciplinas.get(codeT);
-			
+
 			String hql = "from Disciplina d where d.codigo = :code";
 			Query q = em.createQuery(hql);
 			q.setParameter("code", codD);
 			Disciplina d = (Disciplina) q.getSingleResult();
-			
+
 			Turma t = new Turma(d, codeT, 40, sl);
 			em.getTransaction().begin();
 			em.persist(t);
