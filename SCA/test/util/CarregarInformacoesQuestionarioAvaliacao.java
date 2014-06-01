@@ -1,3 +1,4 @@
+package util;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -5,7 +6,7 @@ import javax.persistence.Persistence;
 import br.cefetrj.sca.dominio.avaliacao.Alternativa;
 import br.cefetrj.sca.dominio.avaliacao.Quesito;
 
-public class CriarQuestionario {
+public class CarregarInformacoesQuestionarioAvaliacao {
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence

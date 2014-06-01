@@ -60,7 +60,8 @@ public class TurmasCursadasService {
 	 * Dada a matrícula de um aluno, retorna a lista de turmas que o aluno já
 	 * cursou com aprovação.
 	 * 
-	 * @param aluno
+	 * @param matriculaAluno matrícula do aluno.
+	 * 
 	 * @return lista de turmas que o aluno de matrícula
 	 *         <code>matriculaAluno</code> cursou com aprovação.
 	 */
@@ -72,8 +73,8 @@ public class TurmasCursadasService {
 			for (Inscricao inscricao : inscricoes) {
 				if (aluno.getMatricula().equals(
 						inscricao.getAluno().getMatricula())) {
-					String avaliacao = inscricao.getAvaliacao();
-					if (!avaliacao.equals("AP")) {
+					EnumSituacaoFinalAvaliacao avaliacao = inscricao.getAvaliacao();
+					if (avaliacao != EnumSituacaoFinalAvaliacao.AP) {
 						break;
 					}
 					turmas.add(turma);

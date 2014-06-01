@@ -2,6 +2,7 @@ package br.cefetrj.sca.dominio;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -9,21 +10,22 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
- * Representa a inscrição de um aluno em um turma em um determinado semestre
- * letivo.
+ * Representa a inscrição de um aluno em um turma em um determinado semestre letivo.
  * 
  * @author Eduardo
- * 
+ *
  */
+@Entity
 public class Inscricao {
+
 	@Id
 	@GeneratedValue
-	private Long id;
-
-	@OneToOne
-	private Aluno aluno;
-
+	Long id;
+	
 	@ManyToOne
+	private Aluno aluno;
+	
+	@OneToOne
 	private Aproveitamento avaliacao = null;
 
 	/**
@@ -31,6 +33,9 @@ public class Inscricao {
 	 */
 	@Transient
 	private EstrategiaAvaliacaoAluno estrategiaAvaliacao;
+
+	private Inscricao() {
+	}
 
 	public Inscricao(Aluno aluno) {
 		super();
@@ -54,21 +59,25 @@ public class Inscricao {
 		if (avaliacao == null)
 			throw new IllegalStateException(
 					"Avaliação ainda não foi registrada.");
-		return this.estrategiaAvaliacao.getGrau(this.avaliacao);
+		return this.estrategiaAvaliacao.getConceito(this.avaliacao);
 	}
 
 	public void setEstrategiaCalculoGrau(EstrategiaAvaliacaoAluno strategia) {
 		this.estrategiaAvaliacao = strategia;
 	}
 
-	public String getAvaliacao() {
+	public EnumSituacaoFinalAvaliacao getAvaliacao() {
 		if (avaliacao == null)
 			throw new IllegalStateException(
 					"Avaliação ainda não foi registrada.");
-		return this.estrategiaAvaliacao.getAvaliacao(this.avaliacao);
+		return this.estrategiaAvaliacao.getSituacaoFinal(this.avaliacao);
 	}
 
 	public void registrarAvaliacao(Aproveitamento avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }

@@ -1,5 +1,5 @@
 package br.cefetrj.sca.dominio;
 
-public enum EnumAvaliacao {
+public enum EnumSituacaoFinalAvaliacao {
 	AP, RM, RF, TD, INDEFINIDA;
 }

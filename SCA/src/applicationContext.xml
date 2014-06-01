@@ -11,6 +11,7 @@
 	<bean id="ProfessorRepositorioBean" class="br.cefetrj.sca.dominio.ProfessorRepositorio" />
 	<bean id="ProfessorDaoBean" class="br.cefetrj.sca.infra.ProfessorDaoJpa" />
 	<bean id="AlunoDaoBean" class="br.cefetrj.sca.infra.AlunoDaoJpa" />
+	<bean id="EstrategiaAvaliacaoAlunoBean" class="br.cefetrj.sca.dominio.EstrategiaAvaliacaoAlunoImpl2009" />
 
 </beans>
 

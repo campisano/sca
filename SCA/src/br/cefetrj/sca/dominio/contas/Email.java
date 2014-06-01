@@ -14,10 +14,10 @@ public class Email {
 
 	public Email(String endereco) {
 		if(endereco == null || endereco.isEmpty()){
-			throw new IllegalArgumentException("Endereço do email é obrigatório.");
+			throw new IllegalArgumentException("EndereÃ§o do email Ã© obrigatï¿½rio.");
 		}
 		if (!validador.validar(endereco)) {
-			throw new IllegalArgumentException("Endereço fornecido não é válido: " + endereco);
+			throw new IllegalArgumentException("EndereÃ§o fornecido nÃ£o Ã© vÃ¡lido: " + endereco);
 		}
 		this.endereco = endereco;
 	}

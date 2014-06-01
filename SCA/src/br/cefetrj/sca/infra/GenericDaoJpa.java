@@ -32,7 +32,7 @@ public class GenericDaoJpa<T> {
 		} catch (Exception ex) {
 			if (tx != null && tx.isActive())
 				tx.rollback();
-			throw new DAOException("Erro na inclusão de objeto.", ex);
+			throw new DAOException("Erro na inclusÃ£o de objeto.", ex);
 		}
 		return true;
 	}
@@ -48,7 +48,7 @@ public class GenericDaoJpa<T> {
 		} catch (Exception ex) {
 			if (tx != null && tx.isActive())
 				tx.rollback();
-			throw new DAOException("Erro durante a exclusão.", ex);
+			throw new DAOException("Erro durante a exclusï¿½o.", ex);
 		}
 		return true;
 	}
@@ -63,7 +63,7 @@ public class GenericDaoJpa<T> {
 		} catch (Exception ex) {
 			if (tx != null && tx.isActive())
 				tx.rollback();
-			throw new DAOException("Erro durante a inclusão.", ex);
+			throw new DAOException("Erro durante a inclusï¿½o.", ex);
 		}
 		return true;
 	}
@@ -72,7 +72,7 @@ public class GenericDaoJpa<T> {
 		T entidade = null;
 
 		try {
-			logger.info("Resgatando entidade cujo id é " + id + " da classe: "
+			logger.info("Resgatando entidade cujo id Ã© " + id + " da classe: "
 					+ c.getName());
 			entidade = entityManager.find(c, id);
 		} catch (RuntimeException ex) {

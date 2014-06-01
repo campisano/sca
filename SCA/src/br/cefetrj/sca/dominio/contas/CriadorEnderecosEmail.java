@@ -19,7 +19,7 @@ public class CriadorEnderecosEmail {
 	public Email criar(String nome) {
 		if (nome == null || nome.isEmpty()) {
 			throw new IllegalArgumentException(
-					"Nome n„o pode ser nulo ou vazio.");
+					"Nome n√£o pode ser nulo ou vazio.");
 		}
 		nome = removeAcentos(nome);
 		String[] partesNome = nome.split("\\s");
@@ -38,13 +38,13 @@ public class CriadorEnderecosEmail {
 	public static void main(String[] args) {
 		CriadorEnderecosEmail criador = new CriadorEnderecosEmail();
 		Email email = criador.criar("Eduardo Bezerra da Silva");
-		email = criador.criar("Jo„o Ruan Soares Minto");
-		email = criador.criar("Jo„o Silva Minto");
+		email = criador.criar("Jo√£o Ruan Soares Minto");
+		email = criador.criar("Jo√£o Silva Minto");
 		System.out.println(email.getEndereco());
 		
 		List<String> lista = new ArrayList<String>();
-		String nome = "MARIA JOS…";
-		String nome2 = "MARIA ANA JOS…";
+		String nome = "MARIA JOS√â";
+		String nome2 = "MARIA ANA JOS√â";
 		lista.add(nome);
 		email = criador.criar(nome, lista); // retorna maria.jose.i
 	}

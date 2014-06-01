@@ -16,8 +16,8 @@ public class DisciplinaRepositorio {
 	 * 
 	 * @param nome
 	 *            nome da disciplina
-	 * @return a disciplina cujo nome foi passado como par‚metro, se existir;
-	 *         null em caso contr·rio.
+	 * @return a disciplina cujo nome foi passado como par√¢metro, se existir;
+	 *         null em caso contr√°rio.
 	 */
 	public Disciplina getDisciplina(String nome) {
 		return dao.getByNome(nome);

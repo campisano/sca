@@ -2,26 +2,34 @@ package br.cefetrj.sca.dominio;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Entity
 public class Aproveitamento {
+
 	@Id
 	@GeneratedValue
-	private Long id;
-	
+	Long id;
+
 	private BigDecimal notaP1;
 	private BigDecimal notaP2;
 	private BigDecimal notaP3;
 	private BigDecimal frequencia;
 
+	@Transient
 	@Autowired
 	EstrategiaAvaliacaoAluno estrategia;
-	
-	public void setEstrategia(EstrategiaAvaliacaoAluno estrategia) {
-		this.estrategia = estrategia;
+
+	private Aproveitamento() {
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public BigDecimal getNotaP1() {
@@ -60,8 +68,16 @@ public class Aproveitamento {
 	public void setFrequencia(BigDecimal frequencia) {
 		this.frequencia = frequencia;
 	}
-	
-	public String getGrau() {
-		return estrategia.getGrau(this);
+
+	public EnumSituacaoFinalAvaliacao getSituacaoFinal() {
+		return estrategia.getSituacaoFinal(this);
+	}
+
+	public String getConceito() {
+		return estrategia.getConceito(this);
+	}
+
+	public BigDecimal getNotaFinal() {
+		return estrategia.getNotaFinal(this);
 	}
 }

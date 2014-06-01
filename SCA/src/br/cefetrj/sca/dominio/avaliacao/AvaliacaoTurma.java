@@ -12,29 +12,51 @@ import javax.persistence.ManyToOne;
 import br.cefetrj.sca.dominio.Aluno;
 import br.cefetrj.sca.dominio.Turma;
 
+/**
+ * Representa a avaliação de uma turma por um aluno que a cursou. Uma avaliação
+ * é composta por diversos quesitos. Para cada um deles, o aluno seleciona uma
+ * resposta objetiva correspondente.
+ * 
+ * @see br.cefetrj.sca.dominio.avaliacao.Quesito
+ * @see br.cefetrj.sca.dominio.avaliacao.Alternativa
+ * 
+ * @author Eduardo
+ * 
+ */
 @Entity
 public class AvaliacaoTurma {
 	@Id
 	@GeneratedValue
 	Long id;
 
-	public Long getId() {
-		return id;
-	}
+	/**
+	 * Alternativas selecionadas pelo aluno para cada um dos quesitos de
+	 * avaliação.
+	 */
+	@ManyToMany
+	List<Alternativa> alternativas = new ArrayList<Alternativa>();
+
+	/**
+	 * A turma avaliada.
+	 */
+	@ManyToOne
+	Turma turmaAvaliada;
+
+	/**
+	 * A aluno avaliador.
+	 */
+	@ManyToOne
+	Aluno alunoAvaliador;
 
 	private AvaliacaoTurma() {
 	}
 
-	public AvaliacaoTurma(Aluno aluno, Turma turma, List<Alternativa> respostas) {
-		// restrições para manter a consistência e as invariantes!
+	public AvaliacaoTurma(Aluno aluno, Turma turma,
+			List<Alternativa> alternativas) {
+		// TODO: restrições para manter a consistência e as invariantes!
 	}
 
-	@ManyToMany
-	List<Alternativa> respostas = new ArrayList<Alternativa>();
-
-	@ManyToOne
-	Turma turmaAvaliada;
-
-	@ManyToOne
-	Aluno alunoAvaliador;
+	public Long getId() {
+		return id;
+	}
 }

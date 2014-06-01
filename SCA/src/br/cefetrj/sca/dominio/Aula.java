@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Aula {
+
 	@Id
 	@GeneratedValue
 	Long id;
@@ -16,12 +17,10 @@ public class Aula {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumDiaSemana dia;
 
-	@Embedded // TODO
+	@Embedded
 	private Intervalo intervalo;
 
-	@SuppressWarnings("unused")
 	private Aula() {
-
 	}
 
 	public Aula(EnumDiaSemana dia, String strInicio, String strFim) {
@@ -40,6 +39,10 @@ public class Aula {
 
 	public String getHoraTermino() {
 		return intervalo.getFim();
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }

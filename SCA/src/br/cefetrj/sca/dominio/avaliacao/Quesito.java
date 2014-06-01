@@ -10,6 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+/**
+ * Representa um dos quesitos usados para avaliação de uma turma por um aluno.
+ * Um quesito é composto por um enunciado e diversas respostas alternativas.
+ * 
+ * @author Eduardo
+ * 
+ */
 @Entity
 public class Quesito {
 	@Id

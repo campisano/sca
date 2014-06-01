@@ -24,6 +24,9 @@ public class Disciplina {
 	@JoinTable(name = "DISCIPLINA_PREREQS", joinColumns = { @JoinColumn(name = "GRADE_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "ID") })
 	Set<Disciplina> preReqs = new HashSet<Disciplina>();
 	
+	public Disciplina() {
+	}
+
 	public Disciplina(String nome, String codigo, Integer quantidadeCreditos) {
 		super();
 		this.nome = nome;

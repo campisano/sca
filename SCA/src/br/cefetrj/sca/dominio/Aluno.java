@@ -1,6 +1,8 @@
 package br.cefetrj.sca.dominio;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -40,7 +42,6 @@ public class Aluno {
 		return id;
 	}
 
-	@SuppressWarnings("unused")
 	private Aluno() {
 	}
 
