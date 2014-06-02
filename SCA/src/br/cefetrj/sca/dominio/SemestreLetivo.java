@@ -14,7 +14,7 @@ public class SemestreLetivo {
 		PRIMEIRO, SEGUNDO
 	};
 
-	private int ano;
+	private Integer ano;
 
 	@Enumerated(EnumType.ORDINAL)
 	private EnumPeriodo periodo;
@@ -37,7 +37,7 @@ public class SemestreLetivo {
 				calendar.get(Calendar.YEAR), periodo);
 	}
 
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
 
@@ -49,7 +49,7 @@ public class SemestreLetivo {
 	private SemestreLetivo() {
 	}
 
-	public SemestreLetivo(int ano, EnumPeriodo periodo) {
+	public SemestreLetivo(Integer ano, EnumPeriodo periodo) {
 		super();
 		this.ano = ano;
 		this.periodo = periodo;

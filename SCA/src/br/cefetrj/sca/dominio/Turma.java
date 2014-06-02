@@ -1,9 +1,12 @@
 package br.cefetrj.sca.dominio;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,14 +57,14 @@ public class Turma {
 	 */
 	@OneToMany
 	@JoinColumn(name = "TURMA_ID", referencedColumnName = "ID")
-	private List<Aula> aulas;
+	private List<Aula> aulas = new ArrayList<>();
 
 	/**
 	 * Inscrições realizadas nesta turma.
 	 */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL) // CascadeType.ALL necessário para persistir turmas que fizeram inscrições
 	@JoinColumn(name = "TURMA_ID", referencedColumnName = "ID")
-	private Set<Inscricao> inscricoes;
+	private Set<Inscricao> inscricoes = new HashSet<>();
 
 	/**
 	 * Semestre letivo em que esta turma é ofertada.
@@ -85,11 +88,13 @@ public class Turma {
 		if (disciplina == null) {
 			throw new IllegalArgumentException("Disciplina não fornecida!");
 		}
+
 		this.disciplina = disciplina;
 
 		if (codigo == null || codigo.isEmpty()) {
 			throw new IllegalArgumentException("Código da turma é obrigatório.");
 		}
+
 		// if (codigo.length() != TAM_MAX_CODIGO) {
 		// throw new IllegalArgumentException("Código da turma deve ter "
 		// + TAM_MAX_CODIGO + " caracteres necessariamente.");
