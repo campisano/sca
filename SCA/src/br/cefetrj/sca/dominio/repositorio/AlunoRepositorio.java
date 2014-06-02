@@ -1,11 +1,14 @@
-package br.cefetrj.sca.dominio;
+package br.cefetrj.sca.dominio.repositorio;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import br.cefetrj.sca.dominio.Aluno;
 import br.cefetrj.sca.infra.AlunoDao;
 
+@Component
 public class AlunoRepositorio {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package br.cefetrj.sca.infra;
+package br.cefetrj.sca.infra.jpa;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -8,6 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import br.cefetrj.sca.infra.DAOException;
 
 public class GenericDaoJpa<T> {
 

@@ -1,27 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:annotation-config />
 
-	<bean id="FornecerGradeServiceBean" class="br.cefetrj.sca.service.FornecerGradeService" />
-	<bean id="RegistrarHabilitacoeServiceBean" class="br.cefetrj.sca.service.RegistrarHabilitacoeService" />
-	<bean id="TurmasCursadasServiceBean" class="br.cefetrj.sca.service.TurmasCursadasService" />
-
-	<bean id="AlunoRepositorioBean" class="br.cefetrj.sca.dominio.AlunoRepositorio" />
-	<bean id="DisciplinaRepositorioBean" class="br.cefetrj.sca.dominio.DisciplinaRepositorio" />
-	<bean id="ProfessorRepositorioBean" class="br.cefetrj.sca.dominio.ProfessorRepositorio" />
-	<bean id="TurmaRepositorioBean" class="br.cefetrj.sca.dominio.TurmaRepositorio" />
-
-	<bean id="AlunoDaoBean" class="br.cefetrj.sca.infra.AlunoDaoJpa" />
-	<bean id="DisciplinaDaoBean" class="br.cefetrj.sca.infra.DisciplinaDaoJpa" />
-	<bean id="ProfessorDaoBean" class="br.cefetrj.sca.infra.ProfessorDaoJpa" />
-	<bean id="TurmaDaoBean" class="br.cefetrj.sca.infra.TurmaDaoJpa" />
-
-	<bean id="EstrategiaAvaliacaoAlunoBean" class="br.cefetrj.sca.dominio.EstrategiaAvaliacaoAlunoImpl2009" />
+	<context:component-scan base-package="br.cefetrj.sca.service" />
+	<context:component-scan base-package="br.cefetrj.sca.infra" />
+	<context:component-scan base-package="br.cefetrj.sca.infra.jpa" />
+	<context:component-scan base-package="br.cefetrj.sca.dominio" />
+	<context:component-scan base-package="br.cefetrj.sca.dominio.repositorio" />
 
 </beans>
 

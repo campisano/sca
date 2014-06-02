@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.cefetrj.sca.dominio.Aluno;
-import br.cefetrj.sca.dominio.AlunoRepositorio;
 import br.cefetrj.sca.dominio.Disciplina;
-import br.cefetrj.sca.dominio.DisciplinaRepositorio;
 import br.cefetrj.sca.dominio.EnumSituacaoFinalAvaliacao;
 import br.cefetrj.sca.dominio.Inscricao;
 import br.cefetrj.sca.dominio.SemestreLetivo;
 import br.cefetrj.sca.dominio.Turma;
-import br.cefetrj.sca.dominio.TurmaRepositorio;
+import br.cefetrj.sca.dominio.repositorio.AlunoRepositorio;
+import br.cefetrj.sca.dominio.repositorio.DisciplinaRepositorio;
+import br.cefetrj.sca.dominio.repositorio.TurmaRepositorio;
 
+@Component
 public class TurmasCursadasService {
 
 	@Autowired
@@ -38,7 +40,7 @@ public class TurmasCursadasService {
 		Set<Disciplina> cursadas = getDisciplinasCursadasComAprovacao(a);
 		Set<Disciplina> indisponiveis = getDisciplinasIndisponiveis(a);
 
-		Set<Turma> abertas = rt
+		List<Turma> abertas = rt
 				.getTurmasAbertas(SemestreLetivo.SEMESTRE_LETIVO_CORRENTE);
 		for (Turma turma : abertas) {
 			Disciplina disciplina = turma.getDisciplina();

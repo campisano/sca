@@ -1,4 +1,4 @@
-package br.cefetrj.sca.infra;
+package br.cefetrj.sca.infra.jpa;
 
 import java.util.List;
 
@@ -6,8 +6,13 @@ import javax.el.MethodNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.cefetrj.sca.dominio.Disciplina;
+import org.springframework.stereotype.Component;
 
+import br.cefetrj.sca.dominio.Disciplina;
+import br.cefetrj.sca.infra.DAOException;
+import br.cefetrj.sca.infra.DisciplinaDao;
+
+@Component
 public class DisciplinaDaoJpa implements DisciplinaDao {
 	private GenericDaoJpa<Disciplina> genericDAO = new GenericDaoJpa<Disciplina>();
 

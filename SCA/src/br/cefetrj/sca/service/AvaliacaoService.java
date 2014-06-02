@@ -3,23 +3,22 @@ package br.cefetrj.sca.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.cefetrj.sca.dominio.AvaliacaoRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import br.cefetrj.sca.dominio.SemestreLetivo;
 import br.cefetrj.sca.dominio.Turma;
-import br.cefetrj.sca.dominio.TurmaRepositorio;
+import br.cefetrj.sca.dominio.repositorio.AvaliacaoRepositorio;
+import br.cefetrj.sca.dominio.repositorio.TurmaRepositorio;
 
+@Component
 public class AvaliacaoService {
 
+	@Autowired
 	private TurmaRepositorio turmaRepo;
+
+	@Autowired
 	private AvaliacaoRepositorio avaliacaoRepo;
-
-	public void setTurmaRepositorio(TurmaRepositorio turmaRepo) {
-		this.turmaRepo = turmaRepo;
-	}
-
-	public void setAvaliacaoRepositorio(AvaliacaoRepositorio avaliacaoRepo) {
-		this.avaliacaoRepo = avaliacaoRepo;
-	}
 
 	public List<String[]> solicitaAvaliacao(String matricula) {
 		if (matricula == null || matricula.trim().equals("")) {

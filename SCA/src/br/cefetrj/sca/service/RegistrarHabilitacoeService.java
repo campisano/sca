@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.cefetrj.sca.dominio.Disciplina;
 import br.cefetrj.sca.dominio.Professor;
-import br.cefetrj.sca.dominio.ProfessorRepositorio;
+import br.cefetrj.sca.dominio.repositorio.ProfessorRepositorio;
 
+@Component
 public class RegistrarHabilitacoeService {
 
 	@Autowired

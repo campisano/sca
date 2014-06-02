@@ -1,9 +1,13 @@
-package br.cefetrj.sca.infra;
+package br.cefetrj.sca.infra.jpa;
 
 import java.util.List;
 
-import br.cefetrj.sca.dominio.Professor;
+import org.springframework.stereotype.Component;
 
+import br.cefetrj.sca.dominio.Professor;
+import br.cefetrj.sca.infra.ProfessorDao;
+
+@Component
 public class ProfessorDaoJpa extends GenericDaoJpa<Professor> implements
 		ProfessorDao {
 

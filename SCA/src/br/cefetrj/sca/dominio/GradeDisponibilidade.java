@@ -16,6 +16,8 @@ import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.cefetrj.sca.dominio.repositorio.DisciplinaRepositorio;
+
 @Entity
 public class GradeDisponibilidade implements Cloneable {
 

@@ -1,9 +1,13 @@
-package br.cefetrj.sca.infra;
+package br.cefetrj.sca.infra.jpa;
 
 import java.util.List;
 
-import br.cefetrj.sca.dominio.Aluno;
+import org.springframework.stereotype.Component;
 
+import br.cefetrj.sca.dominio.Aluno;
+import br.cefetrj.sca.infra.AlunoDao;
+
+@Component
 public class AlunoDaoJpa extends GenericDaoJpa<Aluno> implements AlunoDao {
 
 	@Override

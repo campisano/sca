@@ -5,25 +5,31 @@
 
 	<display-name>SCA</display-name>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext.xml</param-value>
-	</context-param>
+    <!-- spring configuration file -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
+    <!-- WEB servlet -->
 	<servlet>
-		<servlet-name>springweb</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>2</load-on-startup>
+		<servlet-name>SCA-spring</servlet-name> <!-- servlet config will be SCA-spring-servlet.xml -->
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!-- Servlet mapping -->
 	<servlet-mapping>
-		<servlet-name>springweb</servlet-name>
-		<url-pattern>*.spring</url-pattern>
+		<servlet-name>SCA-spring</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
+    <!-- start Spring -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>
