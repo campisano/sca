@@ -77,6 +77,15 @@ public class CarregarInformacoesQuestionarioAvaliacao {
 			em.persist(quesito);
 			em.getTransaction().commit();
 		}
+
+		em.close();
+		emf.close();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static Quesito criarQuestao(String enunciado,
@@ -89,5 +98,4 @@ public class CarregarInformacoesQuestionarioAvaliacao {
 
 		return quest;
 	}
-
 }
