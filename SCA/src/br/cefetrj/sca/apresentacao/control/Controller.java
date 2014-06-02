@@ -52,6 +52,5 @@ public class Controller extends HttpServlet {
 		AbstractCommand comando = (AbstractCommand) comandos.get(cmd);
 		String pagina = comando.execute(request, response);
 		request.getRequestDispatcher(pagina).forward(request, response);
-
 	}
 }

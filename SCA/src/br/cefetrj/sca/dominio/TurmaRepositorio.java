@@ -28,8 +28,10 @@ public class TurmaRepositorio {
 	}
 
 	public Set<Turma> getTurmasAbertas(SemestreLetivo semestre) {
-		// TODO Auto-generated method stub
-		return null;
+	}
+
+	public List<Turma> getTurmasCursadas(String matricula,
+			SemestreLetivo semestreLetivoCorrente) {
 	}
 
 }
