@@ -17,11 +17,31 @@ public class AvaliacaoView {
 	private AvaliacaoService service;
 
 	@RequestMapping(value = "/solicitaAvaliacao", method = RequestMethod.POST)
-	public String solicitaAvaliacao(@RequestParam String matricula, ModelMap model) {
+	public String solicitaAvaliacao(@RequestParam String matricula,
+			ModelMap model) {
 
-		model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
-		model.addAttribute("msg", "done");
+		try {
+			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
 
-		return "/avaliacao.jsp";
+			return "/avaliacao";
+		} catch (Exception exc) {
+			model.addAttribute("msg", exc.getMessage());
+			return "/index";
+		}
+	}
+
+	@RequestMapping(value = "/solicitaAvaliacaoTurma", method = RequestMethod.POST)
+	public String solicitaAvaliacaoTurma(@RequestParam String codigoTurma,
+			ModelMap model) {
+
+		try {
+			model.addAttribute("questoes",
+					service.solicitaAvaliacaoTurma(codigoTurma));
+
+			return "/avalia";
+		} catch (Exception exc) {
+			model.addAttribute("msg", exc.getMessage());
+			return "/index";
+		}
 	}
 }

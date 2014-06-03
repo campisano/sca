@@ -18,10 +18,6 @@ public class TurmaRepositorio {
 	private TurmaRepositorio() {
 	}
 
-	public void setTurmaDao(TurmaDao turmaDAO) {
-		this.turmaDAO = turmaDAO;
-	}
-
 	public List<Turma> obterTodos() {
 		return turmaDAO.recuperarTodos();
 	}
@@ -37,5 +33,9 @@ public class TurmaRepositorio {
 	public List<Turma> getTurmasCursadas(String matricula,
 			SemestreLetivo semestreLetivoCorrente) {
 		return turmaDAO.getTurmasCursadas(matricula, semestreLetivoCorrente);
+	}
+
+	public Turma getByCodigo(String codigoTurma) {
+		return turmaDAO.getByCodigo(codigoTurma);
 	}
 }

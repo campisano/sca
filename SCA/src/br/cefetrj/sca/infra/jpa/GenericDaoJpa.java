@@ -50,7 +50,7 @@ public class GenericDaoJpa<T> {
 		} catch (Exception ex) {
 			if (tx != null && tx.isActive())
 				tx.rollback();
-			throw new DAOException("Erro durante a exclus�o.", ex);
+			throw new DAOException("Erro durante a exclusão.", ex);
 		}
 		return true;
 	}
@@ -65,7 +65,7 @@ public class GenericDaoJpa<T> {
 		} catch (Exception ex) {
 			if (tx != null && tx.isActive())
 				tx.rollback();
-			throw new DAOException("Erro durante a inclus�o.", ex);
+			throw new DAOException("Erro durante a inclusão.", ex);
 		}
 		return true;
 	}
@@ -116,6 +116,28 @@ public class GenericDaoJpa<T> {
 		T entidade = (T) query.getSingleResult();
 
 		return entidade;
+	}
+
+	public T tentaObterEntidade(String queryString,
+			final Object... positionalParams) {
+		Query query = entityManager.createQuery(queryString);
+		int i = 0;
+		for (Object p : positionalParams) {
+			query.setParameter(++i, p);
+		}
+		@SuppressWarnings("unchecked")
+		List<T> l = query.getResultList();
+
+		if (l == null || l.size() == 0) {
+			return null;
+		}
+
+		if (l.size() > 1) {
+			throw new IllegalStateException(
+					"Erro: era esperado somente um resultado.");
+		}
+
+		return l.get(0);
 	}
 
 	public EntityManager getEntityManager() {

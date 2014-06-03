@@ -6,14 +6,14 @@ import br.cefetrj.sca.dominio.Professor;
 
 public interface ProfessorDao {
 
-	public abstract boolean incluir(Professor p);
+	boolean incluir(Professor p);
 
-	public abstract boolean alterar(Professor p);
+	boolean alterar(Professor p);
 
-	public abstract void excluir(Professor p);
+	void excluir(Professor p);
 
-	public abstract Professor getProfessorPorMatricula(String matricula);
+	Professor getProfessorPorMatricula(String matricula);
 
-	public abstract List<Professor> obterTodos();
+	List<Professor> obterTodos();
 
 }

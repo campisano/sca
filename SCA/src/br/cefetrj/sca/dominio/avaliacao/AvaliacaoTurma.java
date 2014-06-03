@@ -60,4 +60,8 @@ public class AvaliacaoTurma {
 	public Long getId() {
 		return id;
 	}
+
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
+	}
 }

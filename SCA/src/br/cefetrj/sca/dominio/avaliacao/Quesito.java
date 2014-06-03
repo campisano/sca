@@ -49,4 +49,8 @@ public class Quesito {
 	public String getEnunciado() {
 		return enunciado;
 	}
+
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
+	}
 }

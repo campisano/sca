@@ -26,5 +26,4 @@ public class AlunoDaoJpa extends GenericDaoJpa<Aluno> implements AlunoDao {
 	public List<Aluno> obterTodos() {
 		return super.obterTodos(Aluno.class);
 	}
-
 }
