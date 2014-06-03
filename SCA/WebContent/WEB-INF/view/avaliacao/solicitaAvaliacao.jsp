@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SCA - Home</title>
+<title>SCA - Avaliação</title>
 </head>
 <body>
-	<h1>Home</h1>
+	<h1>Solicita Avaliação</h1>
 	<hr />
 
-	<a href="/sca/avaliacao/solicitaAvaliacao"> Registrar avaliação de
-		turma.</a>
+	<form action="/sca/avaliacao/solicitaAvaliacao" method="post">
+		Matricula: <input type="text" name="matricula" value="" size=30
+			maxlength=16> <input type="submit" value="Solicita Avaliação">
+	</form>
 
 	<c:if test="${requestScope.error != null}">
 		<hr />

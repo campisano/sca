@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SCA</title>
+<title>SCA - Avaliação</title>
 </head>
 <body>
 	<c:if test="${requestScope.turmas != null}">
@@ -13,15 +13,20 @@
 		<hr />
 
 		<c:forEach items="${requestScope.turmas}" var="turma">
-            Código: ${turma.codigoTurma} -
-            Disciplina: ${turma.nomeDisciplina} -
-            <c:if test="${! turma.isAvaliada}">
-				<form action="/sca/avaliacao/solicitaAvaliacaoTurma" method="post">
-					<input type="hidden" name="codigoTurma"
-						value="${turma.codigoTurma}" /> <input type="submit"
-						value="Avalia" />
-				</form>
-			</c:if>
+			<table>
+				<tr>
+					<td>Código: ${turma.codigoTurma} -</td>
+					<td>Disciplina: ${turma.nomeDisciplina} -</td>
+					<td><c:if test="${! turma.isAvaliada}">
+							<form action="/sca/avaliacao/solicitaAvaliacaoTurma"
+								method="post">
+								<input type="hidden" name="codigoTurma"
+									value="${turma.codigoTurma}" /> <input type="submit"
+									value="Avalia" />
+							</form>
+						</c:if></td>
+				</tr>
+			</table>
 			<c:if test="${turma.isAvaliada}">
                 Avaliada
             </c:if>
@@ -33,9 +38,15 @@
 		<h1>Você não é inscrito a nenhuma turma.</h1>
 	</c:if>
 
-	<c:if test="${requestScope.msg != null}">
+	<c:if test="${requestScope.error != null}">
 		<hr />
-		<h2>${requestScope.msg}</h2>
+		<h2>${requestScope.error}</h2>
+	</c:if>
+
+
+	<c:if test="${requestScope.info != null}">
+		<hr />
+		<p>${requestScope.info}</p>
 	</c:if>
 </body>
 </html>

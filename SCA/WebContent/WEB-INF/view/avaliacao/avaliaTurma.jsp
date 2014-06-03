@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SCA</title>
+<title>SCA - Avaliação</title>
 </head>
 <body>
 	<c:if test="${requestScope.questoes != null}">
-		<form action="" method="post">
+		<form action="/sca/avaliacao/avaliaTurma" method="post">
 			<h1>Responder às questões de avaliação da turma
 				${requestScope.questoes.getCodigoTurma()}:</h1>
 			<input type="hidden" name="codigoTurma"
@@ -22,7 +22,7 @@
 					varStatus="j">
 					<input type="radio" name="q${i.index}" value="${j.index}">${alternativas}<br />
 				</c:forEach>
-				<br />
+				<hr />
 			</c:forEach>
 			<input type="submit" value="Submeter" />
 		</form>
@@ -32,9 +32,15 @@
 		<h1>Não existem questões a serem respondidas!.</h1>
 	</c:if>
 
-	<c:if test="${requestScope.msg != null}">
+	<c:if test="${requestScope.error != null}">
 		<hr />
-		<h2>${requestScope.msg}</h2>
+		<h2>${requestScope.error}</h2>
+	</c:if>
+
+
+	<c:if test="${requestScope.info != null}">
+		<hr />
+		<p>${requestScope.info}</p>
 	</c:if>
 </body>
 </html>
