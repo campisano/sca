@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 		<hr />
 
 		<c:forEach items="${requestScope.turmas}" var="turma">
-            Código: ${turma.codigoTurma} -
+            CÃ³digo: ${turma.codigoTurma} -
             Disciplina: ${turma.nomeDisciplina} -
             <c:if test="${! turma.isAvaliada}">
 				<form action="/sca/avaliacao/solicitaAvaliacaoTurma" method="post">
@@ -28,7 +30,7 @@
 	</c:if>
 
 	<c:if test="${requestScope.turmas == null}">
-		<h1>Você não é inscrito a nenhuma turma.</h1>
+		<h1>VocÃª nÃ£o Ã© inscrito a nenhuma turma.</h1>
 	</c:if>
 
 	<c:if test="${requestScope.msg != null}">

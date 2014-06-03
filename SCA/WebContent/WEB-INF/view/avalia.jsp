@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
 <body>
 	<c:if test="${requestScope.questoes != null}">
 		<form action="" method="post">
-			<h1>Responder ‡s questıes de avaliaÁ„o da turma
+			<h1>Responder √†s quest√µes de avalia√ß√£o da turma
 				${requestScope.questoes.getCodigoTurma()}:</h1>
 			<input type="hidden" name="codigoTurma"
 				value="${requestScope.questoes.getCodigoTurma()}" />
@@ -27,7 +29,7 @@
 	</c:if>
 
 	<c:if test="${requestScope.questoes == null}">
-		<h1>N„o existem questıes a serem respondidas!.</h1>
+		<h1>N√£o existem quest√µes a serem respondidas!.</h1>
 	</c:if>
 
 	<c:if test="${requestScope.msg != null}">

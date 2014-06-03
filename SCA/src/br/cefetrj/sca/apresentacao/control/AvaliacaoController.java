@@ -1,7 +1,7 @@
-package br.cefetrj.sca.apresentacao;
+package br.cefetrj.sca.apresentacao.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.cefetrj.sca.service.AvaliacaoService;
 
-@Component
+@Controller
 @RequestMapping("/avaliacao")
-public class AvaliacaoView {
+public class AvaliacaoController {
 
 	@Autowired
 	private AvaliacaoService service;
@@ -23,10 +23,10 @@ public class AvaliacaoView {
 		try {
 			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
 
-			return "/avaliacao";
+			return "avaliacao";
 		} catch (Exception exc) {
 			model.addAttribute("msg", exc.getMessage());
-			return "/index";
+			return "/home";
 		}
 	}
 
@@ -38,10 +38,10 @@ public class AvaliacaoView {
 			model.addAttribute("questoes",
 					service.solicitaAvaliacaoTurma(codigoTurma));
 
-			return "/avalia";
+			return "avalia";
 		} catch (Exception exc) {
 			model.addAttribute("msg", exc.getMessage());
-			return "/index";
+			return "/home";
 		}
 	}
 }
