@@ -1,4 +1,4 @@
-package br.cefetrj.sca.dominio.avaliacao;
+package br.cefetrj.sca.dominio.avaliacaoturma;
 
 import java.util.ArrayList;
 import java.util.List;

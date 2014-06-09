@@ -4,8 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.cefetrj.sca.dominio.avaliacao.Alternativa;
-import br.cefetrj.sca.dominio.avaliacao.Quesito;
+import br.cefetrj.sca.dominio.avaliacaoturma.Alternativa;
+import br.cefetrj.sca.dominio.avaliacaoturma.Quesito;
 
 public class CarregarInformacoesQuestionarioAvaliacao {
 

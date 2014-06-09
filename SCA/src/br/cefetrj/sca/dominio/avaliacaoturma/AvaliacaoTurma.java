@@ -1,4 +1,4 @@
-package br.cefetrj.sca.dominio.avaliacao;
+package br.cefetrj.sca.dominio.avaliacaoturma;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import br.cefetrj.sca.dominio.Turma;
  * é composta por diversos quesitos. Para cada um deles, o aluno seleciona uma
  * resposta objetiva correspondente.
  * 
- * @see br.cefetrj.sca.dominio.avaliacao.Quesito
- * @see br.cefetrj.sca.dominio.avaliacao.Alternativa
+ * @see br.cefetrj.sca.dominio.avaliacaoturma.Quesito
+ * @see br.cefetrj.sca.dominio.avaliacaoturma.Alternativa
  * 
  * @author Eduardo
  * 

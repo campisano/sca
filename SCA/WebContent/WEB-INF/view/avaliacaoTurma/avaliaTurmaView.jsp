@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:if test="${requestScope.questoes != null}">
-		<form action="/sca/avaliacao/avaliaTurma" method="post">
+		<form action="/sca/avaliacaoTurma/avaliaTurma" method="post">
 			<h1>Responder às questões de avaliação da turma
 				${requestScope.questoes.getCodigoTurma()}:</h1>
 			<input type="hidden" name="codigoTurma"

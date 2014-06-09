@@ -1,4 +1,4 @@
-package br.cefetrj.sca.dominio.avaliacao;
+package br.cefetrj.sca.dominio.avaliacaoturma;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

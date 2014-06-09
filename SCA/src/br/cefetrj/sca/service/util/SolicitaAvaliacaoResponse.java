@@ -1,4 +1,4 @@
-package br.cefetrj.sca.service;
+package br.cefetrj.sca.service.util;
 
 import java.util.ArrayList;
 

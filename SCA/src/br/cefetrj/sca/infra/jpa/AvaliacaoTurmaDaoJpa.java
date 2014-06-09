@@ -2,11 +2,11 @@ package br.cefetrj.sca.infra.jpa;
 
 import org.springframework.stereotype.Component;
 
-import br.cefetrj.sca.dominio.avaliacao.AvaliacaoTurma;
+import br.cefetrj.sca.dominio.avaliacaoturma.AvaliacaoTurma;
 import br.cefetrj.sca.infra.AvaliacaoDao;
 
 @Component
-public class AvaliacaoDaoJpa extends GenericDaoJpa<AvaliacaoTurma> implements
+public class AvaliacaoTurmaDaoJpa extends GenericDaoJpa<AvaliacaoTurma> implements
 		AvaliacaoDao {
 
 	@Override

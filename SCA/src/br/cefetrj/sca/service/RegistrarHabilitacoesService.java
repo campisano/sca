@@ -12,7 +12,7 @@ import br.cefetrj.sca.dominio.Professor;
 import br.cefetrj.sca.dominio.repositorio.ProfessorRepositorio;
 
 @Component
-public class RegistrarHabilitacoeService {
+public class RegistrarHabilitacoesService {
 
 	@Autowired
 	private ProfessorRepositorio repo;

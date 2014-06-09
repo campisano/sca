@@ -10,7 +10,7 @@
 	<h1>Home</h1>
 	<hr />
 
-	<a href="/sca/avaliacao/solicitaAvaliacao"> Registrar avaliação de
+	<a href="/sca/avaliacaoTurma/solicitaAvaliacao"> Registrar avaliação de
 		turma.</a>
 
 	<c:if test="${requestScope.error != null}">

@@ -10,7 +10,7 @@
 	<h1>Solicita Avaliação</h1>
 	<hr />
 
-	<form action="/sca/avaliacao/solicitaAvaliacao" method="post">
+	<form action="/sca/avaliacaoTurma/solicitaAvaliacao" method="post">
 		Matricula: <input type="text" name="matricula" value="" size=30
 			maxlength=16> <input type="submit" value="Solicita Avaliação">
 	</form>

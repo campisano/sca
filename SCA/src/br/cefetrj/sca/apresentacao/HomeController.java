@@ -1,4 +1,4 @@
-package br.cefetrj.sca.apresentacao.control;
+package br.cefetrj.sca.apresentacao;
 
 import java.text.DateFormat;
 import java.util.Date;

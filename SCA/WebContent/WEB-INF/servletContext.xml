@@ -17,7 +17,7 @@
 	<context:annotation-config />
 
 	<!-- Scan for @Component classes -->
-	<context:component-scan base-package="br.cefetrj.sca.apresentacao.control" />
+	<context:component-scan base-package="br.cefetrj.sca.apresentacao" />
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.cefetrj.sca.dominio.avaliacao.Quesito;
+import br.cefetrj.sca.dominio.avaliacaoturma.Quesito;
 import br.cefetrj.sca.infra.QuesitoDao;
 
 @Component

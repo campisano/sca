@@ -1,4 +1,4 @@
-package br.cefetrj.sca.apresentacao.control;
+package br.cefetrj.sca.apresentacao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import br.cefetrj.sca.service.AvaliacaoService;
+import br.cefetrj.sca.service.AvaliacaoTurmaService;
 
 @Controller
 @SessionAttributes("matricula")
-@RequestMapping("/avaliacao")
-public class AvaliacaoController {
+@RequestMapping("/avaliacaoTurma")
+public class AvaliacaoTurmaController {
 
 	@Autowired
-	private AvaliacaoService service;
+	private AvaliacaoTurmaService service;
 
 	@RequestMapping(value = "/{*}", method = RequestMethod.GET)
 	public String get() {
-		return "/avaliacao/solicitaAvaliacaoView";
+		return "/avaliacaoTurma/solicitaAvaliacaoView";
 	}
 
 	@RequestMapping(value = "/solicitaAvaliacao", method = RequestMethod.POST)
@@ -37,7 +37,7 @@ public class AvaliacaoController {
 			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
 			model.addAttribute("matricula", matricula);
 
-			return "/avaliacao/solicitaAvaliacaoTurmaView";
+			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
@@ -54,7 +54,7 @@ public class AvaliacaoController {
 			model.addAttribute("questoes",
 					service.solicitaAvaliacaoTurma(matricula, codigoTurma));
 
-			return "/avaliacao/avaliaTurmaView";
+			return "/avaliacaoTurma/avaliaTurmaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
@@ -89,7 +89,7 @@ public class AvaliacaoController {
 			service.avaliaTurma(matricula, codigoTurma, respostas);
 			model.addAttribute("info", "Avaliação registrada.");
 
-			return "forward:/avaliacao/solicitaNovamenteAvaliacao";
+			return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacao";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
@@ -104,7 +104,7 @@ public class AvaliacaoController {
 		try {
 			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
 
-			return "/avaliacao/solicitaAvaliacaoTurmaView";
+			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 

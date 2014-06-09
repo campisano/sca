@@ -18,7 +18,7 @@
 					<td>Código: ${turma.codigoTurma} -</td>
 					<td>Disciplina: ${turma.nomeDisciplina} -</td>
 					<td><c:if test="${! turma.isAvaliada}">
-							<form action="/sca/avaliacao/solicitaAvaliacaoTurma"
+							<form action="/sca/avaliacaoTurma/solicitaAvaliacaoTurma"
 								method="post">
 								<input type="hidden" name="codigoTurma"
 									value="${turma.codigoTurma}" /> <input type="submit"

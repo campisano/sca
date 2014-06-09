@@ -14,8 +14,8 @@ import br.cefetrj.sca.dominio.Professor;
 import br.cefetrj.sca.dominio.SemestreLetivo;
 import br.cefetrj.sca.dominio.SemestreLetivo.EnumPeriodo;
 import br.cefetrj.sca.dominio.Turma;
-import br.cefetrj.sca.dominio.avaliacao.Alternativa;
-import br.cefetrj.sca.dominio.avaliacao.Quesito;
+import br.cefetrj.sca.dominio.avaliacaoturma.Alternativa;
+import br.cefetrj.sca.dominio.avaliacaoturma.Quesito;
 
 @SuppressWarnings("all")
 public class CreationDB {
