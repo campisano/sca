@@ -35,7 +35,9 @@ public class AvaliacaoTurmaController {
 
 		try {
 			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
-			model.addAttribute("matricula", matricula);
+			model.addAttribute("matricula", matricula); // session save, as
+														// defined in
+														// @SessionAttributes
 
 			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
 		} catch (Exception exc) {
@@ -47,7 +49,7 @@ public class AvaliacaoTurmaController {
 
 	@RequestMapping(value = "/solicitaAvaliacaoTurma", method = RequestMethod.POST)
 	public String solicitaAvaliacaoTurma(
-			@ModelAttribute("matricula") String matricula,
+			@ModelAttribute("matricula") String matricula, // session get
 			@RequestParam String codigoTurma, Model model) {
 
 		try {
@@ -63,7 +65,8 @@ public class AvaliacaoTurmaController {
 	}
 
 	@RequestMapping(value = "/avaliaTurma", method = RequestMethod.POST)
-	public String avaliaTurma(@ModelAttribute("matricula") String matricula,
+	public String avaliaTurma(
+			@ModelAttribute("matricula") String matricula, // session get
 			@RequestParam String codigoTurma, HttpServletRequest request,
 			Model model) {
 
@@ -99,7 +102,8 @@ public class AvaliacaoTurmaController {
 
 	@RequestMapping(value = "/solicitaNovamenteAvaliacao", method = RequestMethod.POST)
 	public String solicitaNovamenteAvaliacao(
-			@ModelAttribute("matricula") String matricula, Model model) {
+			@ModelAttribute("matricula") String matricula, // session get
+			Model model) {
 
 		try {
 			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));

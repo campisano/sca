@@ -114,31 +114,12 @@ public class AvaliacaoTurmaService {
 			alternativas.add(quesito.getAlternativas().get(resposta));
 		}
 
-		// TODO [CMP] criar esse método dentro Turma ou dentro Aluno só
-		// aumentaria o acoplamento destas classes, me parece que tenha que
-		// estar em outro lugar
-		// public void avaliarTurma(Aluno aluno, List<Alternativa> alternativas)
-		// {
-		// if (aluno == null) {
-		// throw new IllegalArgumentException("Erro: Aluno não pode ser nulo.");
-		// }
-		//
-		// if (alternativas == null) {
-		// throw new IllegalArgumentException(
-		// "Erro: Alternativas não podem ser nulas.");
-		// }
-		// ...
-		// }
-
 		AvaliacaoTurma avaliacao = new AvaliacaoTurma(aluno, turma,
 				alternativas);
 
 		avaliacaoRepo.adicionar(avaliacao);
 
 	}
-
-	// TODO [CMP] a lógica de validaAluno e validaTurma não poderia ficar em
-	// repositório? A mensagem de erro faz parte do domínio de qualquer forma
 
 	private Aluno validaAluno(String matricula) {
 		if (matricula == null || matricula.trim().equals("")) {
