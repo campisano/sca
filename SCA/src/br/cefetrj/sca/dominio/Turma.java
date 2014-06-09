@@ -62,7 +62,8 @@ public class Turma {
 	/**
 	 * Inscrições realizadas nesta turma.
 	 */
-	@OneToMany(cascade = CascadeType.ALL) // CascadeType.ALL necessário para persistir turmas que fizeram inscrições
+	@OneToMany(cascade = CascadeType.ALL)
+	// CascadeType.ALL necessário para persistir turmas que fizeram inscrições
 	@JoinColumn(name = "TURMA_ID", referencedColumnName = "ID")
 	private Set<Inscricao> inscricoes = new HashSet<>();
 
@@ -234,5 +235,13 @@ public class Turma {
 	public boolean aprovado(Aluno a) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public boolean isAlunoInscrito(Aluno aluno) {
+		if (aluno == null) {
+			throw new IllegalArgumentException("Erro: Aluno não pode ser nulo.");
+		}
+
+		return getInscricao(aluno) != null;
 	}
 }

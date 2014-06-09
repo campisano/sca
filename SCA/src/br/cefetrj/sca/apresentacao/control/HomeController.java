@@ -22,6 +22,6 @@ public class HomeController {
 
 		model.addAttribute("info", "The time on the server is " + formattedDate);
 
-		return "home";
+		return "homeView";
 	}
 }

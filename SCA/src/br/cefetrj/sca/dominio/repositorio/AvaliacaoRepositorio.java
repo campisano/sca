@@ -18,4 +18,8 @@ public class AvaliacaoRepositorio {
 	public AvaliacaoTurma getAvaliacaoTurma(String codigoTurma) {
 		return avaliacaoDAO.getAvaliacaoTurma(codigoTurma);
 	}
+
+	public void adicionar(AvaliacaoTurma avaliacao) {
+		avaliacaoDAO.incluir(avaliacao);
+	}
 }

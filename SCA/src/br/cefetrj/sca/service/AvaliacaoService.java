@@ -33,22 +33,7 @@ public class AvaliacaoService {
 	private QuesitoRepositorio quesitoRepo;
 
 	public SolicitaAvaliacaoResponse solicitaAvaliacao(String matricula) {
-
-		if (matricula == null || matricula.trim().equals("")) {
-			throw new IllegalArgumentException("Erro: matricula inválida.");
-		}
-
-		Aluno aluno;
-
-		try {
-			aluno = alunoRepo.getByMatricula(matricula);
-		} catch (Exception exc) {
-			aluno = null;
-		}
-
-		if (aluno == null) {
-			throw new IllegalArgumentException("Erro: aluno inexistente.");
-		}
+		validaAluno(matricula);
 
 		List<Turma> turmas = turmaRepo.getTurmasCursadas(matricula,
 				SemestreLetivo.SEMESTRE_LETIVO_CORRENTE);
@@ -68,22 +53,13 @@ public class AvaliacaoService {
 	}
 
 	public SolicitaAvaliacaoTurmaResponse solicitaAvaliacaoTurma(
-			String codigoTurma) {
+			String matricula, String codigoTurma) {
+		Aluno aluno = validaAluno(matricula);
+		Turma turma = validaTurma(codigoTurma);
 
-		if (codigoTurma == null || codigoTurma.trim().equals("")) {
-			throw new IllegalArgumentException("Erro: código turma inválido.");
-		}
-
-		Turma turma;
-
-		try {
-			turma = turmaRepo.getByCodigo(codigoTurma);
-		} catch (Exception exc) {
-			turma = null;
-		}
-
-		if (turma == null) {
-			throw new IllegalArgumentException("Erro: turma inexistente.");
+		if (!turma.isAlunoInscrito(aluno)) {
+			throw new IllegalArgumentException(
+					"Erro: aluno não inscrito na turma informada.");
 		}
 
 		List<Quesito> quesitos = quesitoRepo.obterTodos();
@@ -105,4 +81,100 @@ public class AvaliacaoService {
 		return response;
 	}
 
+	public void avaliaTurma(String matricula, String codigoTurma,
+			List<Integer> respostas) {
+		Aluno aluno = validaAluno(matricula);
+		Turma turma = validaTurma(codigoTurma);
+
+		List<Quesito> quesitos = quesitoRepo.obterTodos();
+		int numRespostas = quesitos.size();
+
+		if (respostas == null || respostas.size() != numRespostas) {
+			throw new IllegalArgumentException(
+					"Erro: número de respostas inválido, recebido: "
+							+ respostas.size() + ", esperado: " + numRespostas
+							+ ".");
+		}
+
+		List<Alternativa> alternativas = new ArrayList<Alternativa>();
+		Quesito quesito;
+		Integer resposta;
+
+		for (int i = 0; i < quesitos.size(); ++i) {
+			quesito = quesitos.get(i);
+			resposta = respostas.get(i);
+
+			if (resposta < 0 || resposta > quesito.getAlternativas().size()) {
+				throw new IllegalArgumentException(
+						"Erro: código de resposta inválido: " + resposta + ".");
+			}
+
+			alternativas.add(quesito.getAlternativas().get(resposta));
+		}
+
+		// TODO [CMP] criar esse método dentro Turma ou dentro Aluno só
+		// aumentaria o acoplamento destas classes, me parece que tenha que
+		// estar em outro lugar
+		// public void avaliarTurma(Aluno aluno, List<Alternativa> alternativas)
+		// {
+		// if (aluno == null) {
+		// throw new IllegalArgumentException("Erro: Aluno não pode ser nulo.");
+		// }
+		//
+		// if (alternativas == null) {
+		// throw new IllegalArgumentException(
+		// "Erro: Alternativas não podem ser nulas.");
+		// }
+		// ...
+		// }
+
+		AvaliacaoTurma avaliacao = new AvaliacaoTurma(aluno, turma,
+				alternativas);
+
+		avaliacaoRepo.adicionar(avaliacao);
+
+	}
+
+	// TODO [CMP] a lógica de validaAluno e validaTurma não poderia ficar em
+	// repositório? A mensagem de erro faz parte do domínio de qualquer forma
+
+	private Aluno validaAluno(String matricula) {
+		if (matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException("Erro: matricula inválida.");
+		}
+
+		Aluno aluno;
+
+		try {
+			aluno = alunoRepo.getByMatricula(matricula);
+		} catch (Exception exc) {
+			aluno = null;
+		}
+
+		if (aluno == null) {
+			throw new IllegalArgumentException("Erro: aluno inexistente.");
+		}
+
+		return aluno;
+	}
+
+	private Turma validaTurma(String codigoTurma) {
+		if (codigoTurma == null || codigoTurma.trim().equals("")) {
+			throw new IllegalArgumentException("Erro: código turma inválido.");
+		}
+
+		Turma turma;
+
+		try {
+			turma = turmaRepo.getByCodigo(codigoTurma);
+		} catch (Exception exc) {
+			turma = null;
+		}
+
+		if (turma == null) {
+			throw new IllegalArgumentException("Erro: turma inexistente.");
+		}
+
+		return turma;
+	}
 }

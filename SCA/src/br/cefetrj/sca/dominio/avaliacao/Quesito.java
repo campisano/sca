@@ -3,6 +3,7 @@ package br.cefetrj.sca.dominio.avaliacao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,15 +28,15 @@ public class Quesito {
 		return id;
 	}
 
+	@Column(nullable = false)
 	private String enunciado;
 
 	@ManyToMany
-	@JoinTable(name = "QUESITO_ALTERNATIVA", joinColumns = { @JoinColumn(name = "QUESITO_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "ALTERNATIVA_ID", referencedColumnName = "ID") })
+	@JoinTable(name = "QUESITO_ALTERNATIVA", joinColumns = { @JoinColumn(name = "QUESITO_ID", referencedColumnName = "ID", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "ALTERNATIVA_ID", referencedColumnName = "ID", nullable = false) })
 	private List<Alternativa> alternativas = new ArrayList<Alternativa>();
 
 	@SuppressWarnings("unused")
 	private Quesito() {
-
 	}
 
 	public Quesito(String enunciado) {

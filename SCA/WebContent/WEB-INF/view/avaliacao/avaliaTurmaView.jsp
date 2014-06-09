@@ -20,7 +20,7 @@
                 Quesito ${i.index + 1}: ${quesito.quesito}<br />
 				<c:forEach items="${quesito.alternativas}" var="alternativas"
 					varStatus="j">
-					<input type="radio" name="q${i.index}" value="${j.index}">${alternativas}<br />
+					<input type="radio" name="quesito${i.index}" value="${j.index}">${alternativas}<br />
 				</c:forEach>
 				<hr />
 			</c:forEach>
