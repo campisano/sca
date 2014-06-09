@@ -7,8 +7,10 @@ import br.cefetrj.sca.dominio.Professor;
 import br.cefetrj.sca.service.FornecerGradeService;
 
 public class App {
+	private static ApplicationContext context;
+
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext(
+		context = new ClassPathXmlApplicationContext(
 				new String[] { "applicationContext.xml" });
 
 		FornecerGradeService serv = (FornecerGradeService) context
@@ -17,5 +19,10 @@ public class App {
 		Professor professor = serv.validarProfessor("1506449");
 		System.out.println(professor.getNome());
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

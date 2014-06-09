@@ -6,13 +6,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import br.cefetrj.sca.service.FornecerGradeService;
 
 public class IncluirProfessor {
+	private static ApplicationContext context;
+
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext(
+		context = new ClassPathXmlApplicationContext(
 				new String[] { "applicationContext.xml" });
 
 		FornecerGradeService serv = (FornecerGradeService) context
 				.getBean("FornecerGradeServiceBean");
 
 		serv.incluirProfessor("1506449", "Eduardo Bezerra");
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
