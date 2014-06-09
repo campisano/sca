@@ -6,6 +6,6 @@ public interface AvaliacaoDao {
 
 	boolean incluir(AvaliacaoTurma avaliacao);
 
-	AvaliacaoTurma getAvaliacaoTurma(String codigoTurma);
+	AvaliacaoTurma getAvaliacaoTurmaAluno(String codigoTurma, String matricula);
 
 }

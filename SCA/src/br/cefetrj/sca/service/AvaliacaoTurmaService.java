@@ -34,7 +34,7 @@ public class AvaliacaoTurmaService {
 	@Autowired
 	private QuesitoRepositorio quesitoRepo;
 
-	public SolicitaAvaliacaoResponse solicitaAvaliacao(String matricula) {
+	public SolicitaAvaliacaoResponse solicitaAvaliacaoMatricula(String matricula) {
 		validaAluno(matricula);
 
 		List<Turma> turmas = turmaRepo.getTurmasCursadas(matricula,
@@ -45,7 +45,8 @@ public class AvaliacaoTurmaService {
 
 		for (Turma turma : turmas) {
 
-			turmaAvaliada = avaliacaoRepo.getAvaliacaoTurma(turma.getCodigo());
+			turmaAvaliada = avaliacaoRepo.getAvaliacaoTurma(turma.getCodigo(),
+					matricula);
 
 			response.add(response.new Item(turma.getCodigo(), turma
 					.getDisciplina().getNome(), turmaAvaliada != null));
@@ -62,6 +63,11 @@ public class AvaliacaoTurmaService {
 		if (!turma.isAlunoInscrito(aluno)) {
 			throw new IllegalArgumentException(
 					"Erro: aluno não inscrito na turma informada.");
+		}
+
+		if (avaliacaoRepo.getAvaliacaoTurma(codigoTurma, matricula) != null) {
+			throw new IllegalArgumentException(
+					"Erro: turma já avaliada pelo aluno.");
 		}
 
 		List<Quesito> quesitos = quesitoRepo.obterTodos();
@@ -88,14 +94,17 @@ public class AvaliacaoTurmaService {
 		Aluno aluno = validaAluno(matricula);
 		Turma turma = validaTurma(codigoTurma);
 
+		if (avaliacaoRepo.getAvaliacaoTurma(codigoTurma, matricula) != null) {
+			throw new IllegalArgumentException(
+					"Erro: turma já avaliada pelo aluno.");
+		}
+
 		List<Quesito> quesitos = quesitoRepo.obterTodos();
 		int numRespostas = quesitos.size();
 
 		if (respostas == null || respostas.size() != numRespostas) {
 			throw new IllegalArgumentException(
-					"Erro: número de respostas inválido, recebido: "
-							+ respostas.size() + ", esperado: " + numRespostas
-							+ ".");
+					"Erro: número de respostas inválido.");
 		}
 
 		List<Alternativa> alternativas = new ArrayList<Alternativa>();

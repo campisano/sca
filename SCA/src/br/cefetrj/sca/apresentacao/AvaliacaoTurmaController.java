@@ -26,24 +26,32 @@ public class AvaliacaoTurmaController {
 	private AvaliacaoTurmaService service;
 
 	@RequestMapping(value = "/{*}", method = RequestMethod.GET)
-	public String get() {
+	public String get(Model model) {
+		model.addAttribute("error", "Erro: página não encontrada.");
+
 		return "/avaliacaoTurma/solicitaAvaliacaoView";
 	}
 
-	@RequestMapping(value = "/solicitaAvaliacao", method = RequestMethod.POST)
-	public String solicitaAvaliacao(@RequestParam String matricula, Model model) {
+	@RequestMapping(value = "/solicitaAvaliacao", method = RequestMethod.GET)
+	public String solicitaAvaliacao() {
+		return "/avaliacaoTurma/solicitaAvaliacaoView";
+	}
+
+	@RequestMapping(value = "/solicitaAvaliacaoMatricula", method = RequestMethod.POST)
+	public String solicitaAvaliacaoMatricula(@RequestParam String matricula,
+			Model model) {
 
 		try {
-			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
 			model.addAttribute("matricula", matricula); // session save, as
 														// defined in
 														// @SessionAttributes
+			model.addAttribute("turmas", service.solicitaAvaliacaoMatricula(matricula));
 
-			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
+			return "/avaliacaoTurma/solicitaAvaliacaoMatriculaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
-			return "/homeView";
+			return "/avaliacaoTurma/solicitaAvaliacaoView";
 		}
 	}
 
@@ -56,11 +64,11 @@ public class AvaliacaoTurmaController {
 			model.addAttribute("questoes",
 					service.solicitaAvaliacaoTurma(matricula, codigoTurma));
 
-			return "/avaliacaoTurma/avaliaTurmaView";
+			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
-			return "/homeView";
+			return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula";
 		}
 	}
 
@@ -75,6 +83,8 @@ public class AvaliacaoTurmaController {
 
 		try {
 			int i = 0;
+
+			// parameters must contain only sorted quesitoX parameters
 			while (parameters.containsKey("quesito" + i)) {
 				respostas
 						.add(Integer.parseInt(parameters.get("quesito" + i)[0]));
@@ -84,35 +94,32 @@ public class AvaliacaoTurmaController {
 		} catch (Exception exc) {
 			model.addAttribute("error",
 					"Erro: Respostas com conteúdo inválido.");
-
-			return "/homeView";
 		}
 
 		try {
 			service.avaliaTurma(matricula, codigoTurma, respostas);
 			model.addAttribute("info", "Avaliação registrada.");
 
-			return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacao";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
-
-			return "/homeView";
 		}
+
+		return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula";
 	}
 
-	@RequestMapping(value = "/solicitaNovamenteAvaliacao", method = RequestMethod.POST)
-	public String solicitaNovamenteAvaliacao(
+	@RequestMapping(value = "/solicitaNovamenteAvaliacaoMatricula", method = RequestMethod.POST)
+	public String solicitaNovamenteAvaliacaoMatricula(
 			@ModelAttribute("matricula") String matricula, // session get
 			Model model) {
 
 		try {
-			model.addAttribute("turmas", service.solicitaAvaliacao(matricula));
+			model.addAttribute("turmas", service.solicitaAvaliacaoMatricula(matricula));
 
-			return "/avaliacaoTurma/solicitaAvaliacaoTurmaView";
+			return "/avaliacaoTurma/solicitaAvaliacaoMatriculaView";
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
 
-			return "/homeView";
+			return "/avaliacaoTurma/solicitaAvaliacaoView";
 		}
 	}
 }

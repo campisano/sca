@@ -15,8 +15,8 @@ public class AvaliacaoTurmaRepositorio {
 	private AvaliacaoTurmaRepositorio() {
 	}
 
-	public AvaliacaoTurma getAvaliacaoTurma(String codigoTurma) {
-		return avaliacaoDAO.getAvaliacaoTurma(codigoTurma);
+	public AvaliacaoTurma getAvaliacaoTurma(String codigoTurma, String matricula) {
+		return avaliacaoDAO.getAvaliacaoTurmaAluno(codigoTurma, matricula);
 	}
 
 	public void adicionar(AvaliacaoTurma avaliacao) {

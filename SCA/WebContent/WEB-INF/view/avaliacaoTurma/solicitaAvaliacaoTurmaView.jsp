@@ -6,47 +6,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SCA - Avaliação</title>
+<link href="${pageContext.request.contextPath}/css/form.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/table.css"
+	rel="stylesheet" type="text/css" />
 </head>
-<body>
-	<c:if test="${requestScope.turmas != null}">
-		<h1>Escolher uma das suas turma a serem avaliadas:</h1>
-		<hr />
-
-		<c:forEach items="${requestScope.turmas}" var="turma">
-			<table>
-				<tr>
-					<td>Código: ${turma.codigoTurma} -</td>
-					<td>Disciplina: ${turma.nomeDisciplina} -</td>
-					<td><c:if test="${! turma.isAvaliada}">
-							<form action="/sca/avaliacaoTurma/solicitaAvaliacaoTurma"
-								method="post">
-								<input type="hidden" name="codigoTurma"
-									value="${turma.codigoTurma}" /> <input type="submit"
-									value="Avalia" />
-							</form>
-						</c:if></td>
-				</tr>
-			</table>
-			<c:if test="${turma.isAvaliada}">
-                Avaliada
-            </c:if>
-			<br />
-		</c:forEach>
+<body class="basic-grey">
+	<c:if test="${requestScope.questoes == null}">
+		<h1>Não existem questões a serem respondidas!.</h1>
 	</c:if>
-
-	<c:if test="${requestScope.turmas == null}">
-		<h1>Você não é inscrito a nenhuma turma.</h1>
+	<c:if test="${requestScope.questoes != null}">
+		<form
+			action="${pageContext.request.contextPath}/avaliacaoTurma/avaliaTurma"
+			method="post">
+			<h1>
+				Responder às questões de avaliação da turma<b>
+					${requestScope.questoes.getCodigoTurma()}:</b>
+			</h1>
+			<input type="hidden" name="codigoTurma"
+				value="${requestScope.questoes.getCodigoTurma()}" />
+			<c:forEach items="${requestScope.questoes}" var="quesito"
+				varStatus="i">
+				<h3>Quesito ${i.index + 1}: ${quesito.quesito}</h3>
+				<c:forEach items="${quesito.alternativas}" var="alternativas"
+					varStatus="j">
+					<input type="radio" name="quesito${i.index}" value="${j.index}">${alternativas}<br />
+				</c:forEach>
+				<br />
+			</c:forEach>
+			<input type="submit" value="Submeter" />
+		</form>
 	</c:if>
 
 	<c:if test="${requestScope.error != null}">
-		<hr />
-		<h2>${requestScope.error}</h2>
+		<br />
+		<h2 class="error">${requestScope.error}</h2>
 	</c:if>
-
-
 	<c:if test="${requestScope.info != null}">
-		<hr />
-		<p>${requestScope.info}</p>
+		<br />
+		<h2 class="info">${requestScope.info}</h2>
 	</c:if>
 </body>
 </html>
