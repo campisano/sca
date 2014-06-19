@@ -18,11 +18,15 @@
 	<h1>Responder às questões de avaliação da turma:</h1>
 
 	<c:if test="${requestScope.error != null}">
-		<div class="error">${requestScope.error}</div>
+		<div>
+			<p class="error">${requestScope.error}</p>
+		</div>
 	</c:if>
 
 	<c:if test="${requestScope.info != null}">
-		<div class="info">${requestScope.info}</div>
+		<div>
+			<p class="info">${requestScope.info}</p>
+		</div>
 	</c:if>
 
 	<c:if test="${requestScope.questoes == null}">
@@ -31,8 +35,10 @@
 
 	<c:if test="${requestScope.questoes != null}">
 
-		<div class="discipline">${requestScope.questoes.getNomeDisciplina()}
-			(${requestScope.questoes.getCodigoTurma()})</div>
+		<div>
+			<p class="discipline">${requestScope.questoes.getNomeDisciplina()}
+				(${requestScope.questoes.getCodigoTurma()})</p>
+		</div>
 
 		<form
 			action="${pageContext.request.contextPath}/avaliacaoTurma/avaliaTurma"
@@ -44,7 +50,9 @@
 				<h3>${i.index + 1})&nbsp;${quesito.quesito}</h3>
 				<c:forEach items="${quesito.alternativas}" var="alternativas"
 					varStatus="j">
-					<input type="radio" name="quesito${i.index}" value="${j.index}" />
+					<input type="radio" name="quesito${i.index}" value="${j.index}"
+						<c:set var="oldQuesitoVarName" value="oldQuesito${i.index}"/>
+						<c:if test="${requestScope[oldQuesitoVarName] == j.index}"> checked="checked"</c:if> />
 					<div class="question">${alternativas}</div>
 					<br />
 				</c:forEach>

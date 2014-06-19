@@ -45,7 +45,8 @@ public class AvaliacaoTurmaController {
 			model.addAttribute("matricula", matricula); // session save, as
 														// defined in
 														// @SessionAttributes
-			model.addAttribute("turmas", service.solicitaAvaliacaoMatricula(matricula));
+			model.addAttribute("turmas",
+					service.solicitaAvaliacaoMatricula(matricula));
 
 			return "/avaliacaoTurma/solicitaAvaliacaoMatriculaView";
 		} catch (Exception exc) {
@@ -88,12 +89,14 @@ public class AvaliacaoTurmaController {
 			while (parameters.containsKey("quesito" + i)) {
 				respostas
 						.add(Integer.parseInt(parameters.get("quesito" + i)[0]));
-
 				++i;
 			}
 		} catch (Exception exc) {
 			model.addAttribute("error",
 					"Erro: Respostas com conteúdo inválido.");
+			model.addAttribute("codigoTurma", codigoTurma);
+
+			return "forward:/avaliacaoTurma/solicitaAvaliacaoTurma";
 		}
 
 		try {
@@ -102,6 +105,18 @@ public class AvaliacaoTurmaController {
 
 		} catch (Exception exc) {
 			model.addAttribute("error", exc.getMessage());
+			model.addAttribute("codigoTurma", codigoTurma);
+
+			int i = 0;
+
+			// parameters must contain only sorted quesitoX parameters
+			while (parameters.containsKey("quesito" + i)) {
+				model.addAttribute("oldQuesito" + i,
+						parameters.get("quesito" + i)[0]);
+				++i;
+			}
+
+			return "forward:/avaliacaoTurma/solicitaAvaliacaoTurma";
 		}
 
 		return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula";
@@ -113,7 +128,8 @@ public class AvaliacaoTurmaController {
 			Model model) {
 
 		try {
-			model.addAttribute("turmas", service.solicitaAvaliacaoMatricula(matricula));
+			model.addAttribute("turmas",
+					service.solicitaAvaliacaoMatricula(matricula));
 
 			return "/avaliacaoTurma/solicitaAvaliacaoMatriculaView";
 		} catch (Exception exc) {
