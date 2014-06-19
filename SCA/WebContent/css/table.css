@@ -33,13 +33,3 @@ div.field input,form.field input {
 div.field input.big,form.field input.big {
 	width: 160px;
 }
-
-.info {
-	color: #222222;
-	background-color: #dddddd;
-}
-
-.error {
-	color: #330000;
-	background-color: #dddddd;
-}

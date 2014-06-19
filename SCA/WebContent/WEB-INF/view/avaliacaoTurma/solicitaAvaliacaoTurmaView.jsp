@@ -6,31 +6,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SCA - Avaliação</title>
+<link href="${pageContext.request.contextPath}/css/base.css"
+	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/form.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/table.css"
 	rel="stylesheet" type="text/css" />
 </head>
 <body class="basic-grey">
-	<c:if test="${requestScope.questoes == null}">
-		<h1>Não existem questões a serem respondidas!.</h1>
+
+	<c:if test="${requestScope.error != null}">
+		<div class="error">${requestScope.error}</div>
 	</c:if>
+
+	<c:if test="${requestScope.info != null}">
+		<div class="info">${requestScope.info}</div>
+	</c:if>
+
+	<c:if test="${requestScope.questoes == null}">
+		<h3>Não existem questões a serem respondidas.</h3>
+	</c:if>
+
 	<c:if test="${requestScope.questoes != null}">
+
+		<h1>
+			Responder às questões de avaliação da turma<b>
+				${requestScope.questoes.getCodigoTurma()}:</b>
+		</h1>
+
 		<form
 			action="${pageContext.request.contextPath}/avaliacaoTurma/avaliaTurma"
 			method="post">
-			<h1>
-				Responder às questões de avaliação da turma<b>
-					${requestScope.questoes.getCodigoTurma()}:</b>
-			</h1>
 			<input type="hidden" name="codigoTurma"
 				value="${requestScope.questoes.getCodigoTurma()}" />
 			<c:forEach items="${requestScope.questoes}" var="quesito"
 				varStatus="i">
-				<h3>Quesito ${i.index + 1}: ${quesito.quesito}</h3>
+				<h2>${i.index + 1})&nbsp;${quesito.quesito}</h2>
 				<c:forEach items="${quesito.alternativas}" var="alternativas"
 					varStatus="j">
-					<input type="radio" name="quesito${i.index}" value="${j.index}">${alternativas}<br />
+					<input type="radio" name="quesito${i.index}" value="${j.index}" />
+					<div class="question">${alternativas}</div>
+					<br />
 				</c:forEach>
 				<br />
 			</c:forEach>
@@ -38,13 +54,5 @@
 		</form>
 	</c:if>
 
-	<c:if test="${requestScope.error != null}">
-		<br />
-		<h2 class="error">${requestScope.error}</h2>
-	</c:if>
-	<c:if test="${requestScope.info != null}">
-		<br />
-		<h2 class="info">${requestScope.info}</h2>
-	</c:if>
 </body>
 </html>

@@ -1,0 +1,22 @@
+.question {
+	display: inline; /* same line as radio */
+	font-size: 18px;
+}
+
+.info {
+	display: inline-block; /* do not get all width space */
+	color: #111;
+	background-color: #DFDFDF;
+	border: 1px solid #CCC;
+	padding: 3px;
+	margin: 0px 0px 20px 10px;
+}
+
+.error {
+	display: inline-block; /* do not get all width space */
+	color: #300;
+	background-color: #EDD;
+	border: 1px solid #CAA;
+	padding: 3px;
+	margin: 0px 0px 20px 10px;
+}
