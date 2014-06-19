@@ -17,11 +17,15 @@
 	<h1>Solicita Avaliação</h1>
 
 	<c:if test="${requestScope.error != null}">
-		<div class="error">${requestScope.error}</div>
+		<div>
+			<p class="error">${requestScope.error}</p>
+		</div>
 	</c:if>
 
 	<c:if test="${requestScope.info != null}">
-		<div class="info">${requestScope.info}</div>
+		<div>
+			<p class="info">${requestScope.info}</p>
+		</div>
 	</c:if>
 
 	<div class="table">
