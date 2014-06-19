@@ -73,7 +73,7 @@ public class AvaliacaoTurmaService {
 		List<Quesito> quesitos = quesitoRepo.obterTodos();
 
 		SolicitaAvaliacaoTurmaResponse response = new SolicitaAvaliacaoTurmaResponse(
-				codigoTurma);
+				codigoTurma, turma.getDisciplina().getNome());
 		List<String> alternativas;
 
 		for (Quesito quesito : quesitos) {

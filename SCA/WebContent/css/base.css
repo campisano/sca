@@ -3,10 +3,20 @@
 	font-size: 18px;
 }
 
+.discipline {
+	display: inline-block; /* do not get all width space */
+	font-size: 18px;
+	font-weight: bolder;
+	background-color: #DDD;
+	border: 1px solid #CCC;
+	padding: 5px;
+	margin: 10px;
+}
+
 .info {
 	display: inline-block; /* do not get all width space */
 	color: #111;
-	background-color: #DFDFDF;
+	background-color: #DDD;
 	border: 1px solid #CCC;
 	padding: 3px;
 	margin: 0px 0px 20px 10px;

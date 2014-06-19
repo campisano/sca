@@ -26,12 +26,19 @@ public class SolicitaAvaliacaoTurmaResponse extends
 	}
 
 	private String codigoTurma;
+	private String nomeDisciplina;
 
-	public SolicitaAvaliacaoTurmaResponse(String codigoTurma) {
+	public SolicitaAvaliacaoTurmaResponse(String codigoTurma,
+			String nomeDisciplina) {
 		this.codigoTurma = codigoTurma;
+		this.nomeDisciplina = nomeDisciplina;
 	}
 
 	public String getCodigoTurma() {
 		return codigoTurma;
+	}
+
+	public String getNomeDisciplina() {
+		return nomeDisciplina;
 	}
 }

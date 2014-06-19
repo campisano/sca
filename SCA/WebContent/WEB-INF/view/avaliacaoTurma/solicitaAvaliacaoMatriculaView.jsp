@@ -50,7 +50,7 @@
 					</div>
 					<div class="field">
 						<c:if test="${turma.isAvaliada}">
-							<input class="lastfield" type="button" value="Avaliada"
+							<input class="lastfield" type="submit" value="Avaliada"
 								disabled="disabled" />
 						</c:if>
 						<c:if test="${! turma.isAvaliada}">

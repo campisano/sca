@@ -15,6 +15,8 @@
 </head>
 <body class="basic-grey">
 
+	<h1>Responder às questões de avaliação da turma:</h1>
+
 	<c:if test="${requestScope.error != null}">
 		<div class="error">${requestScope.error}</div>
 	</c:if>
@@ -29,10 +31,8 @@
 
 	<c:if test="${requestScope.questoes != null}">
 
-		<h1>
-			Responder às questões de avaliação da turma<b>
-				${requestScope.questoes.getCodigoTurma()}:</b>
-		</h1>
+		<div class="discipline">${requestScope.questoes.getNomeDisciplina()}
+			(${requestScope.questoes.getCodigoTurma()})</div>
 
 		<form
 			action="${pageContext.request.contextPath}/avaliacaoTurma/avaliaTurma"
@@ -41,7 +41,7 @@
 				value="${requestScope.questoes.getCodigoTurma()}" />
 			<c:forEach items="${requestScope.questoes}" var="quesito"
 				varStatus="i">
-				<h2>${i.index + 1})&nbsp;${quesito.quesito}</h2>
+				<h3>${i.index + 1})&nbsp;${quesito.quesito}</h3>
 				<c:forEach items="${quesito.alternativas}" var="alternativas"
 					varStatus="j">
 					<input type="radio" name="quesito${i.index}" value="${j.index}" />

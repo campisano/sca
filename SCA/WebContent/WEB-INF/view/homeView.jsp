@@ -22,10 +22,10 @@
 		<div class="info">${requestScope.info}</div>
 	</c:if>
 
-	<h2>
-		<a
+	<ul>
+		<li><a
 			href="${pageContext.request.contextPath}/avaliacaoTurma/solicitaAvaliacao">
-			Registrar avaliação de turma.</a>
-	</h2>
+				Registrar avaliação de turma.</a></li>
+	</ul>
 </body>
 </html>
