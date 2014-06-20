@@ -42,11 +42,12 @@ public class AvaliacaoTurmaController {
 			Model model) {
 
 		try {
+			model.addAttribute("turmas",
+					service.solicitaAvaliacaoMatricula(matricula));
+
 			model.addAttribute("matricula", matricula); // session save, as
 														// defined in
 														// @SessionAttributes
-			model.addAttribute("turmas",
-					service.solicitaAvaliacaoMatricula(matricula));
 
 			return "/avaliacaoTurma/solicitaAvaliacaoMatriculaView";
 		} catch (Exception exc) {
@@ -58,7 +59,7 @@ public class AvaliacaoTurmaController {
 
 	@RequestMapping(value = "/solicitaAvaliacaoTurma", method = RequestMethod.POST)
 	public String solicitaAvaliacaoTurma(
-			@ModelAttribute("matricula") String matricula, // session get
+			@ModelAttribute("matricula") String matricula, // get from session
 			@RequestParam String codigoTurma, Model model) {
 
 		try {
@@ -75,7 +76,7 @@ public class AvaliacaoTurmaController {
 
 	@RequestMapping(value = "/avaliaTurma", method = RequestMethod.POST)
 	public String avaliaTurma(
-			@ModelAttribute("matricula") String matricula, // session get
+			@ModelAttribute("matricula") String matricula, // get from session
 			@RequestParam String codigoTurma, HttpServletRequest request,
 			Model model) {
 
@@ -122,9 +123,9 @@ public class AvaliacaoTurmaController {
 		return "forward:/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula";
 	}
 
-	@RequestMapping(value = "/solicitaNovamenteAvaliacaoMatricula", method = RequestMethod.POST)
+	@RequestMapping(value = "/solicitaNovamenteAvaliacaoMatricula")
 	public String solicitaNovamenteAvaliacaoMatricula(
-			@ModelAttribute("matricula") String matricula, // session get
+			@ModelAttribute("matricula") String matricula, // get from session
 			Model model) {
 
 		try {

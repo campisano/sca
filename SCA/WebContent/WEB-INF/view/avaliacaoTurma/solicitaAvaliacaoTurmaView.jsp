@@ -58,7 +58,10 @@
 				</c:forEach>
 				<br />
 			</c:forEach>
-			<input type="submit" value="Submeter" />
+			<input type="submit" value="Submeter" /> <a class="button_embedded"
+				href="${pageContext.request.contextPath}/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula">
+				<input type="button" value="Voltar" />
+			</a>
 		</form>
 	</c:if>
 

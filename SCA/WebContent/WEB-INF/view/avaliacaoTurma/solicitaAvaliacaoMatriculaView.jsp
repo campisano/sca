@@ -72,5 +72,11 @@
 		</div>
 	</c:if>
 
+	<br />
+	<a class="button_embedded"
+		href="${pageContext.request.contextPath}/avaliacaoTurma/solicitaAvaliacao">
+		<input type="button" value="Voltar" />
+	</a>
+
 </body>
 </html>

@@ -23,23 +23,30 @@
 
 .basic-grey input[type="text"],.basic-grey input[type="email"],.basic-grey textarea,.basic-grey select
 	{
-	border: 1px solid #DDD;
 	height: 24px;
 	width: 100%;
+	border: 1px solid #DDD;
 }
 
 .basic-grey textarea {
 	height: 100px;
 }
 
-.basic-grey .button,.basic-grey input[type="submit"] {
+.basic-grey a.button_embedded {
+	text-decoration: none;
+}
+
+.basic-grey .button,.basic-grey input[type="submit"],.basic-grey input[type="button"]
+	{
 	color: #FFF;
 	background: #888;
 	text-shadow: 1px 1px 1px #000;
 	border: 1px solid #666;
+	padding: 3px;
 }
 
-.basic-grey .button:hover,.basic-grey input[type="submit"]:hover {
+.basic-grey .button:hover,.basic-grey input[type="submit"]:hover,.basic-grey input[type="button"]:hover
+	{
 	background: #AAA;
 }
 
