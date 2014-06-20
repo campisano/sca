@@ -90,7 +90,7 @@ public class AvaliacaoTurmaService {
 	}
 
 	public void avaliaTurma(String matricula, String codigoTurma,
-			List<Integer> respostas) {
+			List<Integer> respostas, String sugestoes) {
 		Aluno aluno = validaAluno(matricula);
 		Turma turma = validaTurma(codigoTurma);
 
@@ -125,6 +125,10 @@ public class AvaliacaoTurmaService {
 
 		AvaliacaoTurma avaliacao = new AvaliacaoTurma(aluno, turma,
 				alternativas);
+
+		if (sugestoes != null && sugestoes.trim().length() > 0) {
+			avaliacao.setSugestoes(sugestoes);
+		}
 
 		avaliacaoRepo.adicionar(avaliacao);
 

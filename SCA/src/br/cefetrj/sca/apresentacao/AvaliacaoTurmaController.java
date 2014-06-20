@@ -77,8 +77,8 @@ public class AvaliacaoTurmaController {
 	@RequestMapping(value = "/avaliaTurma", method = RequestMethod.POST)
 	public String avaliaTurma(
 			@ModelAttribute("matricula") String matricula, // get from session
-			@RequestParam String codigoTurma, HttpServletRequest request,
-			Model model) {
+			@RequestParam String codigoTurma, @RequestParam String sugestoes,
+			HttpServletRequest request, Model model) {
 
 		Map<String, String[]> parameters = request.getParameterMap();
 		List<Integer> respostas = new ArrayList<Integer>();
@@ -101,7 +101,7 @@ public class AvaliacaoTurmaController {
 		}
 
 		try {
-			service.avaliaTurma(matricula, codigoTurma, respostas);
+			service.avaliaTurma(matricula, codigoTurma, respostas, sugestoes);
 			model.addAttribute("info", "Avaliação registrada.");
 
 		} catch (Exception exc) {

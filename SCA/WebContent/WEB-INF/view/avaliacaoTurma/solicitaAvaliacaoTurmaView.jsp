@@ -58,10 +58,22 @@
 				</c:forEach>
 				<br />
 			</c:forEach>
-			<input type="submit" value="Submeter" /> <a class="button_embedded"
-				href="${pageContext.request.contextPath}/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula">
-				<input type="button" value="Voltar" />
-			</a>
+
+			<div>
+				<h4>Forneça sugestões ou críticas para a avaliação da
+					disciplina:</h4>
+				<textarea name="sugestoes" maxlength="8192"
+					placeholder="(opcional, max 8192 caracteres)"></textarea>
+			</div>
+
+			<br />
+
+			<div>
+				<input type="submit" value="Submeter" /> <a class="button_embedded"
+					href="${pageContext.request.contextPath}/avaliacaoTurma/solicitaNovamenteAvaliacaoMatricula">
+					<input type="button" value="Voltar" />
+				</a>
+			</div>
 		</form>
 	</c:if>
 
