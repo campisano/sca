@@ -104,7 +104,7 @@ public class AvaliacaoTurmaService {
 
 		if (respostas == null || respostas.size() != numRespostas) {
 			throw new IllegalArgumentException(
-					"Erro: número de respostas inválido.");
+					"Erro: número de respostas inválido. Por favor, forneça respostas para todos os quesitos.");
 		}
 
 		List<Alternativa> alternativas = new ArrayList<Alternativa>();

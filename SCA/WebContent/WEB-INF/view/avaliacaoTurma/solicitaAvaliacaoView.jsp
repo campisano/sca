@@ -33,7 +33,7 @@
 			action="${pageContext.request.contextPath}/avaliacaoTurma/solicitaAvaliacaoMatricula"
 			method="post">
 			<div class="field">
-				<div>Matricula:</div>
+				<div>Matrícula:</div>
 			</div>
 			<div class="field">
 				<input type="text" name="matricula" value="" size="30"

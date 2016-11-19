@@ -15,7 +15,7 @@
 </head>
 <body class="basic-grey">
 
-	<h1>Escolher uma das suas turma a serem avaliadas:</h1>
+	<h1>Avaliação de turmas</h1>
 
 	<c:if test="${requestScope.error != null}">
 		<div>
@@ -30,17 +30,17 @@
 	</c:if>
 
 	<c:if test="${requestScope.turmas == null}">
-		<h3>Você não é inscrito a nenhuma turma.</h3>
+		<h3>Você não está inscrito em nenhuma turma.</h3>
 	</c:if>
 
 	<c:if test="${requestScope.turmas != null}">
 		<div class="table">
 			<div class="row">
 				<div class="field">
-					<div>Código</div>
+					<div><b>Código da Turma</b></div>
 				</div>
 				<div class="field">
-					<div>Disciplina</div>
+					<div><b>Nome da Disciplina</b></div>
 				</div>
 				<div class="field"></div>
 			</div>
@@ -63,7 +63,7 @@
 								method="post">
 								<input type="hidden" name="codigoTurma"
 									value="${turma.codigoTurma}" /> <input class="lastfield"
-									type="submit" value="Avalia" />
+									type="submit" value="Avaliar" />
 							</form>
 						</c:if>
 					</div>

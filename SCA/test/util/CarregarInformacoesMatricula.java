@@ -45,7 +45,7 @@ public class CarregarInformacoesMatricula {
 
 	public static void main(String[] args) {
 		CarregarInformacoesMatricula test = new CarregarInformacoesMatricula();
-		test.read("./Matrícula-DEPIN-2014-1.xls");
+		test.read("./data/Matrícula-DEPIN-2014-1.xls");
 		test.writeDB("SCAPU");
 	}
 
